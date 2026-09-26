@@ -1,0 +1,65 @@
+{
+  "total_transformed_features": 30,
+  "top_10_features": [
+    {
+      "rank": 1,
+      "feature": "tenure",
+      "importance": 0.2021,
+      "importance_pct": 20.21
+    },
+    {
+      "rank": 2,
+      "feature": "TotalCharges",
+      "importance": 0.1435,
+      "importance_pct": 14.35
+    },
+    {
+      "rank": 3,
+      "feature": "MonthlyCharges",
+      "importance": 0.0915,
+      "importance_pct": 9.15
+    },
+    {
+      "rank": 4,
+      "feature": "InternetService_Fiber optic",
+      "importance": 0.0913,
+      "importance_pct": 9.13
+    },
+    {
+      "rank": 5,
+      "feature": "PaymentMethod_Electronic check",
+      "importance": 0.0742,
+      "importance_pct": 7.42
+    },
+    {
+      "rank": 6,
+      "feature": "Contract_Two year",
+      "importance": 0.0717,
+      "importance_pct": 7.17
+    },
+    {
+      "rank": 7,
+      "feature": "OnlineSecurity_Yes",
+      "importance": 0.0385,
+      "importance_pct": 3.85
+    },
+    {
+      "rank": 8,
+      "feature": "Contract_One year",
+      "importance": 0.0377,
+      "importance_pct": 3.77
+    },
+    {
+      "rank": 9,
+      "feature": "TechSupport_Yes",
+      "importance": 0.0259,
+      "importance_pct": 2.59
+    },
+    {
+      "rank": 10,
+      "feature": "PaperlessBilling_Yes",
+      "importance": 0.018,
+      "importance_pct": 1.8
+    }
+  ]
+}

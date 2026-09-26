@@ -1,0 +1,464 @@
+{
+  "metadata": {
+    "experiment_phase": "Phase 5 Tree-Based Model Benchmarking",
+    "dataset_rows_total": 7043,
+    "training_sample_count": 5634,
+    "test_sample_count": 1409,
+    "test_set_used": false,
+    "test_set_fitted": false,
+    "test_set_predicted": false,
+    "cv_configuration": {
+      "strategy": "StratifiedKFold",
+      "n_splits": 5,
+      "shuffle": true,
+      "random_state": 42
+    }
+  },
+  "model_configurations": {
+    "DecisionTreeClassifier": {
+      "random_state": 42,
+      "criterion": "gini",
+      "splitter": "best",
+      "max_depth": null,
+      "min_samples_split": 2,
+      "min_samples_leaf": 1,
+      "tuning_performed": false
+    },
+    "RandomForestClassifier": {
+      "n_estimators": 300,
+      "random_state": 42,
+      "n_jobs": -1,
+      "criterion": "gini",
+      "max_depth": null,
+      "min_samples_split": 2,
+      "min_samples_leaf": 1,
+      "class_weight": null,
+      "tuning_performed": false
+    }
+  },
+  "benchmark_comparison": {
+    "Logistic Regression (Baseline)": {
+      "roc_auc": {
+        "mean": 0.8461,
+        "std": 0.0126,
+        "fold_scores": [
+          0.8478,
+          0.8251,
+          0.8419,
+          0.8628,
+          0.853
+        ]
+      },
+      "average_precision": {
+        "mean": 0.6615,
+        "std": 0.0194,
+        "fold_scores": [
+          0.6435,
+          0.6357,
+          0.686,
+          0.6782,
+          0.6641
+        ]
+      },
+      "precision": {
+        "mean": 0.6549,
+        "std": 0.0284,
+        "fold_scores": [
+          0.6478,
+          0.6073,
+          0.6583,
+          0.6667,
+          0.6943
+        ]
+      },
+      "recall": {
+        "mean": 0.5438,
+        "std": 0.0409,
+        "fold_scores": [
+          0.5351,
+          0.5017,
+          0.5284,
+          0.6221,
+          0.5318
+        ]
+      },
+      "f1": {
+        "mean": 0.5935,
+        "std": 0.0304,
+        "fold_scores": [
+          0.5861,
+          0.5495,
+          0.5863,
+          0.6436,
+          0.6023
+        ]
+      }
+    },
+    "Logistic Regression (+ tenure_group)": {
+      "roc_auc": {
+        "mean": 0.8465,
+        "std": 0.0117,
+        "fold_scores": [
+          0.8467,
+          0.8279,
+          0.8408,
+          0.861,
+          0.8561
+        ]
+      },
+      "average_precision": {
+        "mean": 0.6651,
+        "std": 0.0134,
+        "fold_scores": [
+          0.653,
+          0.6463,
+          0.682,
+          0.675,
+          0.6693
+        ]
+      },
+      "precision": {
+        "mean": 0.6685,
+        "std": 0.0195,
+        "fold_scores": [
+          0.6639,
+          0.6432,
+          0.6723,
+          0.6605,
+          0.7027
+        ]
+      },
+      "recall": {
+        "mean": 0.5358,
+        "std": 0.036,
+        "fold_scores": [
+          0.5418,
+          0.4883,
+          0.5284,
+          0.5987,
+          0.5217
+        ]
+      },
+      "f1": {
+        "mean": 0.5941,
+        "std": 0.0233,
+        "fold_scores": [
+          0.5967,
+          0.5551,
+          0.5918,
+          0.6281,
+          0.5988
+        ]
+      }
+    },
+    "Decision Tree (Original)": {
+      "roc_auc": {
+        "mean": 0.6568,
+        "std": 0.0162,
+        "fold_scores": [
+          0.6581,
+          0.634,
+          0.6652,
+          0.6456,
+          0.6813
+        ]
+      },
+      "average_precision": {
+        "mean": 0.3793,
+        "std": 0.0173,
+        "fold_scores": [
+          0.3797,
+          0.3566,
+          0.3879,
+          0.3658,
+          0.4064
+        ]
+      },
+      "precision": {
+        "mean": 0.4914,
+        "std": 0.0244,
+        "fold_scores": [
+          0.4933,
+          0.4618,
+          0.5016,
+          0.4696,
+          0.5304
+        ]
+      },
+      "recall": {
+        "mean": 0.4983,
+        "std": 0.0208,
+        "fold_scores": [
+          0.495,
+          0.4649,
+          0.5151,
+          0.4916,
+          0.5251
+        ]
+      },
+      "f1": {
+        "mean": 0.4948,
+        "std": 0.0222,
+        "fold_scores": [
+          0.4942,
+          0.4633,
+          0.5083,
+          0.4804,
+          0.5277
+        ]
+      }
+    },
+    "Decision Tree (+ tenure_group)": {
+      "roc_auc": {
+        "mean": 0.666,
+        "std": 0.0159,
+        "fold_scores": [
+          0.6671,
+          0.6434,
+          0.6759,
+          0.6547,
+          0.689
+        ]
+      },
+      "average_precision": {
+        "mean": 0.3889,
+        "std": 0.0179,
+        "fold_scores": [
+          0.3887,
+          0.3671,
+          0.3996,
+          0.3727,
+          0.4164
+        ]
+      },
+      "precision": {
+        "mean": 0.5034,
+        "std": 0.0255,
+        "fold_scores": [
+          0.5033,
+          0.4812,
+          0.5162,
+          0.4726,
+          0.5439
+        ]
+      },
+      "recall": {
+        "mean": 0.5144,
+        "std": 0.0234,
+        "fold_scores": [
+          0.5117,
+          0.4716,
+          0.5318,
+          0.5184,
+          0.5385
+        ]
+      },
+      "f1": {
+        "mean": 0.5087,
+        "std": 0.0225,
+        "fold_scores": [
+          0.5075,
+          0.4764,
+          0.5239,
+          0.4944,
+          0.5412
+        ]
+      }
+    },
+    "Random Forest (Original)": {
+      "roc_auc": {
+        "mean": 0.826,
+        "std": 0.0117,
+        "fold_scores": [
+          0.8194,
+          0.8116,
+          0.8304,
+          0.8224,
+          0.8459
+        ]
+      },
+      "average_precision": {
+        "mean": 0.6241,
+        "std": 0.0309,
+        "fold_scores": [
+          0.5785,
+          0.6012,
+          0.6581,
+          0.6272,
+          0.6556
+        ]
+      },
+      "precision": {
+        "mean": 0.6298,
+        "std": 0.0369,
+        "fold_scores": [
+          0.5875,
+          0.6063,
+          0.6624,
+          0.6087,
+          0.6842
+        ]
+      },
+      "recall": {
+        "mean": 0.4769,
+        "std": 0.023,
+        "fold_scores": [
+          0.4716,
+          0.4482,
+          0.5184,
+          0.4682,
+          0.4783
+        ]
+      },
+      "f1": {
+        "mean": 0.5425,
+        "std": 0.0254,
+        "fold_scores": [
+          0.5232,
+          0.5154,
+          0.5816,
+          0.5293,
+          0.563
+        ]
+      }
+    },
+    "Random Forest (+ tenure_group)": {
+      "roc_auc": {
+        "mean": 0.8262,
+        "std": 0.0134,
+        "fold_scores": [
+          0.8213,
+          0.8052,
+          0.8287,
+          0.8288,
+          0.8467
+        ]
+      },
+      "average_precision": {
+        "mean": 0.6214,
+        "std": 0.0334,
+        "fold_scores": [
+          0.5744,
+          0.5915,
+          0.6542,
+          0.6289,
+          0.6582
+        ]
+      },
+      "precision": {
+        "mean": 0.6331,
+        "std": 0.0527,
+        "fold_scores": [
+          0.5696,
+          0.5841,
+          0.6842,
+          0.6256,
+          0.7023
+        ]
+      },
+      "recall": {
+        "mean": 0.4729,
+        "std": 0.0341,
+        "fold_scores": [
+          0.4381,
+          0.4415,
+          0.5217,
+          0.4582,
+          0.505
+        ]
+      },
+      "f1": {
+        "mean": 0.5413,
+        "std": 0.0411,
+        "fold_scores": [
+          0.4953,
+          0.5029,
+          0.592,
+          0.529,
+          0.5875
+        ]
+      }
+    }
+  },
+  "decision_tree_diagnostics": {
+    "tree_depth": 23,
+    "n_leaves": 1097,
+    "node_count": 2193,
+    "train_accuracy": 0.998
+  },
+  "random_forest_diagnostics": {
+    "n_estimators": 300,
+    "max_features": "sqrt",
+    "train_accuracy": 0.998
+  },
+  "decision_tree_oof_confusion_matrix": {
+    "true_negatives": 3365,
+    "false_positives": 774,
+    "false_negatives": 748,
+    "true_positives": 747,
+    "total_observations": 5634,
+    "accuracy_default_threshold": 0.7299,
+    "false_positive_rate": 0.187,
+    "false_negative_rate": 0.5003,
+    "precision_oof": 0.4911,
+    "recall_oof": 0.4997,
+    "f1_oof": 0.4954,
+    "roc_auc_oof": 0.6568,
+    "average_precision_oof": 0.3786
+  },
+  "decision_tree_oof_error_analysis": {
+    "false_positives": {
+      "count": 774,
+      "percentage_of_retained": 18.7,
+      "median_tenure_months": 18.0,
+      "median_monthly_charges": 75.57499999999999,
+      "month_to_month_contract_pct": 77.78,
+      "fiber_optic_pct": 57.36,
+      "electronic_check_pct": 46.12
+    },
+    "false_negatives": {
+      "count": 748,
+      "percentage_of_churners": 50.03,
+      "median_tenure_months": 17.0,
+      "median_monthly_charges": 78.1,
+      "month_to_month_contract_pct": 81.02,
+      "fiber_optic_pct": 61.1,
+      "electronic_check_pct": 48.93
+    }
+  },
+  "random_forest_oof_confusion_matrix": {
+    "true_negatives": 3714,
+    "false_positives": 425,
+    "false_negatives": 774,
+    "true_positives": 721,
+    "total_observations": 5634,
+    "accuracy_default_threshold": 0.7872,
+    "false_positive_rate": 0.1027,
+    "false_negative_rate": 0.5177,
+    "precision_oof": 0.6291,
+    "recall_oof": 0.4823,
+    "f1_oof": 0.546,
+    "roc_auc_oof": 0.8257,
+    "average_precision_oof": 0.6216
+  },
+  "random_forest_oof_error_analysis": {
+    "false_positives": {
+      "count": 425,
+      "percentage_of_retained": 10.27,
+      "median_tenure_months": 7.0,
+      "median_monthly_charges": 79.95,
+      "month_to_month_contract_pct": 98.35,
+      "fiber_optic_pct": 70.59,
+      "electronic_check_pct": 64.24
+    },
+    "false_negatives": {
+      "count": 774,
+      "percentage_of_churners": 51.77,
+      "median_tenure_months": 23.0,
+      "median_monthly_charges": 75.2,
+      "month_to_month_contract_pct": 78.29,
+      "fiber_optic_pct": 56.72,
+      "electronic_check_pct": 43.93
+    }
+  }
+}

@@ -1,0 +1,187 @@
+{
+  "metadata": {
+    "experiment_name": "Phase 4 Logistic Regression Baseline Benchmarking",
+    "model": "LogisticRegression",
+    "parameters": {
+      "max_iter": 1000,
+      "random_state": 42,
+      "C": 1.0,
+      "penalty": "l2",
+      "solver": "lbfgs"
+    },
+    "preprocessing": "TotalChargesCleaner -> StandardScaler -> OneHotEncoder(drop='first', handle_unknown='ignore')",
+    "dataset_rows_total": 7043,
+    "training_sample_count": 5634,
+    "test_sample_count": 1409,
+    "test_set_used": false,
+    "test_set_fitted": false,
+    "cv_configuration": {
+      "strategy": "StratifiedKFold",
+      "n_splits": 5,
+      "shuffle": true,
+      "random_state": 42
+    },
+    "intercept": -1.996784,
+    "feature_count_transformed": 30
+  },
+  "experiments": {
+    "Experiment A (Baseline)": {
+      "feature_set": "baseline",
+      "description": "Original 19 raw features without engineered additions",
+      "metrics": {
+        "roc_auc": {
+          "mean": 0.8461,
+          "std": 0.0126
+        },
+        "average_precision": {
+          "mean": 0.6615,
+          "std": 0.0194
+        },
+        "precision": {
+          "mean": 0.6549,
+          "std": 0.0284
+        },
+        "recall": {
+          "mean": 0.5438,
+          "std": 0.0409
+        },
+        "f1": {
+          "mean": 0.5935,
+          "std": 0.0304
+        }
+      }
+    },
+    "Experiment B1 (+ tenure_group)": {
+      "feature_set": "b1_tenure_group",
+      "description": "Baseline + categorical lifecycle tenure bins",
+      "metrics": {
+        "roc_auc": {
+          "mean": 0.8465,
+          "std": 0.0117
+        },
+        "average_precision": {
+          "mean": 0.6651,
+          "std": 0.0134
+        },
+        "precision": {
+          "mean": 0.6685,
+          "std": 0.0195
+        },
+        "recall": {
+          "mean": 0.5358,
+          "std": 0.036
+        },
+        "f1": {
+          "mean": 0.5941,
+          "std": 0.0233
+        }
+      },
+      "delta_vs_baseline": {
+        "roc_auc": 0.0004,
+        "average_precision": 0.0036,
+        "precision": 0.0136,
+        "recall": -0.008,
+        "f1": 0.0006
+      }
+    }
+  },
+  "delta_b1_vs_baseline": {
+    "roc_auc": 0.0004,
+    "average_precision": 0.0036,
+    "precision": 0.0136,
+    "recall": -0.008,
+    "f1": 0.0006
+  },
+  "tenure_group_verdict": "tenure_group produced a small observed improvement in PR-AUC (+0.0036) and Precision (+0.0136) in the training-only cross-validation experiment. It is retained as a candidate for Phase 5 comparison rather than being considered conclusively beneficial.",
+  "confusion_matrix_oof": {
+    "true_negatives": 3710,
+    "false_positives": 429,
+    "false_negatives": 682,
+    "true_positives": 813,
+    "total_observations": 5634,
+    "accuracy_default_threshold": 0.8028,
+    "false_positive_rate": 0.1036,
+    "false_negative_rate": 0.4562,
+    "precision_oof": 0.6546,
+    "recall_oof": 0.5438,
+    "f1_oof": 0.5941,
+    "roc_auc_oof": 0.8456,
+    "average_precision_oof": 0.6586
+  },
+  "error_analysis_oof": {
+    "false_positives": {
+      "count": 429,
+      "percentage_of_retained": 10.36,
+      "median_tenure_months": 11.0,
+      "median_monthly_charges": 83.75,
+      "month_to_month_contract_pct": 99.53,
+      "fiber_optic_pct": 87.65,
+      "electronic_check_pct": 73.89,
+      "observation": "False Positives predominantly exhibit Month-to-month contracts and Fiber optic service with higher monthly charges, matching churner risk profiles despite remaining retained."
+    },
+    "false_negatives": {
+      "count": 682,
+      "percentage_of_churners": 45.62,
+      "median_tenure_months": 25.0,
+      "median_monthly_charges": 69.05,
+      "month_to_month_contract_pct": 75.22,
+      "fiber_optic_pct": 45.75,
+      "electronic_check_pct": 36.51,
+      "observation": "False Negatives (missed churners) display higher median tenure and lower monthly charges or non-fiber services, leading the linear model at default 0.50 threshold to assign churn probability < 0.50."
+    }
+  },
+  "top_positive_associations": [
+    {
+      "feature": "cat__InternetService_Fiber optic",
+      "coefficient": 1.205764,
+      "absolute_coefficient": 1.205764
+    },
+    {
+      "feature": "num__TotalCharges",
+      "coefficient": 0.527456,
+      "absolute_coefficient": 0.527456
+    },
+    {
+      "feature": "cat__StreamingTV_Yes",
+      "coefficient": 0.385429,
+      "absolute_coefficient": 0.385429
+    },
+    {
+      "feature": "cat__StreamingMovies_Yes",
+      "coefficient": 0.385121,
+      "absolute_coefficient": 0.385121
+    },
+    {
+      "feature": "cat__PaymentMethod_Electronic check",
+      "coefficient": 0.383268,
+      "absolute_coefficient": 0.383268
+    }
+  ],
+  "top_negative_associations": [
+    {
+      "feature": "cat__Contract_Two year",
+      "coefficient": -1.324843,
+      "absolute_coefficient": 1.324843
+    },
+    {
+      "feature": "num__tenure",
+      "coefficient": -1.254886,
+      "absolute_coefficient": 1.254886
+    },
+    {
+      "feature": "cat__Contract_One year",
+      "coefficient": -0.686655,
+      "absolute_coefficient": 0.686655
+    },
+    {
+      "feature": "num__MonthlyCharges",
+      "coefficient": -0.498733,
+      "absolute_coefficient": 0.498733
+    },
+    {
+      "feature": "cat__OnlineSecurity_Yes",
+      "coefficient": -0.343621,
+      "absolute_coefficient": 0.343621
+    }
+  ]
+}

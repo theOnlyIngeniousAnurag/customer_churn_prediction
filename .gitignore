@@ -1,0 +1,42 @@
+# Environment variables & secrets
+.env*
+!.env.example
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+dist/
+build/
+.pytest_cache/
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Node & Frontend legacy
+node_modules/
+dist/
+coverage/
+
+# OS & Logs
+.DS_Store
+Thumbs.db
+*.log
+*.tmp
+
+# Trained large artifacts (serialized models)
+models/*.joblib
+models/*.pkl
+
+# Processed intermediate data (can be generated reproducibly)
+data/processed/*
+!data/processed/.gitkeep

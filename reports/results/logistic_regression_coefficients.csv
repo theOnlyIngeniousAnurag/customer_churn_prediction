@@ -1,0 +1,31 @@
+feature,coefficient,absolute_coefficient
+cat__Contract_Two year,-1.324843,1.324843
+num__tenure,-1.254886,1.254886
+cat__InternetService_Fiber optic,1.205764,1.205764
+cat__Contract_One year,-0.686655,0.686655
+num__TotalCharges,0.527456,0.527456
+num__MonthlyCharges,-0.498733,0.498733
+cat__StreamingTV_Yes,0.385429,0.385429
+cat__StreamingMovies_Yes,0.385121,0.385121
+cat__PaymentMethod_Electronic check,0.383268,0.383268
+cat__PaperlessBilling_Yes,0.372368,0.372368
+cat__MultipleLines_Yes,0.368014,0.368014
+cat__OnlineSecurity_Yes,-0.343621,0.343621
+cat__TechSupport_Yes,-0.294004,0.294004
+cat__Dependents_Yes,-0.224914,0.224914
+cat__InternetService_No,-0.176423,0.176423
+cat__OnlineBackup_No internet service,-0.176423,0.176423
+cat__DeviceProtection_No internet service,-0.176423,0.176423
+cat__TechSupport_No internet service,-0.176423,0.176423
+cat__StreamingTV_No internet service,-0.176423,0.176423
+cat__StreamingMovies_No internet service,-0.176423,0.176423
+cat__OnlineSecurity_No internet service,-0.176423,0.176423
+cat__SeniorCitizen_1,0.146257,0.146257
+cat__PhoneService_Yes,-0.116856,0.116856
+cat__MultipleLines_No phone service,0.113906,0.113906
+cat__OnlineBackup_Yes,-0.09413,0.09413
+cat__PaymentMethod_Mailed check,0.071492,0.071492
+cat__DeviceProtection_Yes,0.040049,0.040049
+cat__PaymentMethod_Credit card (automatic),-0.033363,0.033363
+cat__gender_Male,0.021717,0.021717
+cat__Partner_Yes,0.021464,0.021464

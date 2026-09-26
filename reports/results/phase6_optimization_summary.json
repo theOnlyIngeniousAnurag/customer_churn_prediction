@@ -1,0 +1,70 @@
+{
+  "phase": "Phase 6",
+  "test_set_used": false,
+  "cross_validation": {
+    "method": "StratifiedKFold",
+    "n_splits": 5,
+    "shuffle": true,
+    "random_state": 42,
+    "primary_metric": "average_precision"
+  },
+  "decision_tree": {
+    "iterations": 15,
+    "best_params": {
+      "min_samples_split": 2,
+      "min_samples_leaf": 2,
+      "max_depth": 5,
+      "criterion": "gini"
+    },
+    "best_cv_pr_auc": 0.6132,
+    "roc_auc": 0.8284,
+    "precision": 0.6181,
+    "recall": 0.5425,
+    "f1": 0.5766,
+    "overfitting_diagnostic": {
+      "train_pr_auc": 0.6503,
+      "validation_pr_auc": 0.6132,
+      "train_val_gap": 0.0371,
+      "fold_variability_std": 0.017
+    }
+  },
+  "random_forest": {
+    "iterations": 20,
+    "best_params": {
+      "n_estimators": 300,
+      "min_samples_split": 2,
+      "min_samples_leaf": 2,
+      "max_features": "sqrt",
+      "max_depth": 8
+    },
+    "best_cv_pr_auc": 0.6643,
+    "roc_auc": 0.8459,
+    "precision": 0.6784,
+    "recall": 0.4876,
+    "f1": 0.5671,
+    "overfitting_diagnostic": {
+      "train_pr_auc": 0.766,
+      "validation_pr_auc": 0.6643,
+      "train_val_gap": 0.1017,
+      "fold_variability_std": 0.0211
+    }
+  },
+  "comparison_with_phase5": {
+    "decision_tree": {
+      "pr_auc_delta": 0.2339,
+      "roc_auc_delta": 0.1716,
+      "f1_delta": 0.0818
+    },
+    "random_forest": {
+      "pr_auc_delta": 0.0402,
+      "roc_auc_delta": 0.0199,
+      "f1_delta": 0.0246
+    }
+  },
+  "notes": [
+    "Tuned models showed stable improvements.",
+    "Decision Tree regularization substantially reduced the overfitting observed in the Phase 5 baseline and produced a large improvement in cross-validation performance.",
+    "Random Forest optimization improved cross-validation performance, while a train-validation PR-AUC gap of 0.1017 indicates some remaining overfitting. Validation fold variability remained moderate (PR-AUC SD = 0.0211).",
+    "Strict isolation of the test set was maintained throughout."
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "seed_configuration": {
+    "random_state": 42,
+    "shuffle": true
+  },
+  "train_test_partition": {
+    "test_size": 0.2,
+    "stratified": true,
+    "train_count": 5634,
+    "test_count": 1409,
+    "determinism_verified": true
+  },
+  "model_reproducibility": {
+    "classifier": "RandomForestClassifier",
+    "n_estimators": 300,
+    "max_depth": 8,
+    "min_samples_leaf": 2,
+    "min_samples_split": 2,
+    "max_features": "sqrt",
+    "reproducible_probabilities": true
+  },
+  "ranking_determinism": {
+    "primary_sort": "churn_probability DESC",
+    "secondary_tie_breaker": "customerID ASC",
+    "stable_ranks": true
+  }
+}

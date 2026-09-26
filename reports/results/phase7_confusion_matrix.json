@@ -1,0 +1,11 @@
+{
+  "tn": 951,
+  "fp": 84,
+  "fn": 190,
+  "tp": 184,
+  "total_test_observations": 1409,
+  "actual_churn_count": 374,
+  "actual_non_churn_count": 1035,
+  "predicted_churn_count": 268,
+  "predicted_non_churn_count": 1141
+}

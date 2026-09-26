@@ -1,0 +1,770 @@
+{
+  "dataset_structure": {
+    "rows": 7043,
+    "columns": 21,
+    "explicit_missing_raw": {
+      "TotalCharges_numeric": 11
+    },
+    "totalcharges_whitespace_count": 11,
+    "totalcharges_whitespace_tenures": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "totalcharges_all_tenure_zero": true
+  },
+  "target_distribution": {
+    "class_counts": {
+      "No": 5174,
+      "Yes": 1869
+    },
+    "class_proportions_pct": {
+      "No": 73.46,
+      "Yes": 26.54
+    },
+    "imbalance_ratio": "2.77:1",
+    "primary_metric_implication": "Class imbalance (2.77:1) indicates accuracy alone is a misleading metric; ROC-AUC, Precision, Recall, F1, and PR-AUC must serve as primary evaluation criteria."
+  },
+  "numerical_univariate_stats": {
+    "tenure": {
+      "count": 7043,
+      "mean": 32.37,
+      "std": 24.56,
+      "min": 0.0,
+      "q25": 9.0,
+      "median": 29.0,
+      "q75": 55.0,
+      "max": 72.0,
+      "iqr": 46.0,
+      "lower_fence": -60.0,
+      "upper_fence": 124.0,
+      "outlier_count_iqr": 0,
+      "outlier_pct_iqr": 0.0
+    },
+    "MonthlyCharges": {
+      "count": 7043,
+      "mean": 64.76,
+      "std": 30.09,
+      "min": 18.25,
+      "q25": 35.5,
+      "median": 70.35,
+      "q75": 89.85,
+      "max": 118.75,
+      "iqr": 54.35,
+      "lower_fence": -46.02,
+      "upper_fence": 171.38,
+      "outlier_count_iqr": 0,
+      "outlier_pct_iqr": 0.0
+    },
+    "TotalCharges_numeric": {
+      "count": 7032,
+      "mean": 2283.3,
+      "std": 2266.77,
+      "min": 18.8,
+      "q25": 401.45,
+      "median": 1397.47,
+      "q75": 3794.74,
+      "max": 8684.8,
+      "iqr": 3393.29,
+      "lower_fence": -4688.48,
+      "upper_fence": 8884.67,
+      "outlier_count_iqr": 0,
+      "outlier_pct_iqr": 0.0
+    }
+  },
+  "numerical_bivariate_vs_churn": {
+    "tenure": {
+      "No_mean": 37.57,
+      "No_median": 38.0,
+      "No_std": 24.11,
+      "Yes_mean": 17.98,
+      "Yes_median": 10.0,
+      "Yes_std": 19.53,
+      "median_difference": -28.0,
+      "mean_difference": -19.59
+    },
+    "MonthlyCharges": {
+      "No_mean": 61.27,
+      "No_median": 64.43,
+      "No_std": 31.09,
+      "Yes_mean": 74.44,
+      "Yes_median": 79.65,
+      "Yes_std": 24.67,
+      "median_difference": 15.22,
+      "mean_difference": 13.18
+    },
+    "TotalCharges_numeric": {
+      "No_mean": 2555.34,
+      "No_median": 1683.6,
+      "No_std": 2329.46,
+      "Yes_mean": 1531.8,
+      "Yes_median": 703.55,
+      "Yes_std": 1890.82,
+      "median_difference": -980.05,
+      "mean_difference": -1023.55
+    },
+    "tenure_cohorts": [
+      {
+        "tenure_group": "0-12 mos",
+        "total": 2186,
+        "churn_count": 1037,
+        "churn_rate_pct": 47.44
+      },
+      {
+        "tenure_group": "13-24 mos",
+        "total": 1024,
+        "churn_count": 294,
+        "churn_rate_pct": 28.71
+      },
+      {
+        "tenure_group": "25-48 mos",
+        "total": 1594,
+        "churn_count": 325,
+        "churn_rate_pct": 20.39
+      },
+      {
+        "tenure_group": "49-72 mos",
+        "total": 2239,
+        "churn_count": 213,
+        "churn_rate_pct": 9.51
+      }
+    ]
+  },
+  "categorical_bivariate_vs_churn": {
+    "gender": [
+      {
+        "gender": "Female",
+        "total_customers": 3488,
+        "churn_count": 939,
+        "churn_rate": 26.92
+      },
+      {
+        "gender": "Male",
+        "total_customers": 3555,
+        "churn_count": 930,
+        "churn_rate": 26.16
+      }
+    ],
+    "SeniorCitizen": [
+      {
+        "SeniorCitizen": 0,
+        "total_customers": 5901,
+        "churn_count": 1393,
+        "churn_rate": 23.61
+      },
+      {
+        "SeniorCitizen": 1,
+        "total_customers": 1142,
+        "churn_count": 476,
+        "churn_rate": 41.68
+      }
+    ],
+    "Partner": [
+      {
+        "Partner": "No",
+        "total_customers": 3641,
+        "churn_count": 1200,
+        "churn_rate": 32.96
+      },
+      {
+        "Partner": "Yes",
+        "total_customers": 3402,
+        "churn_count": 669,
+        "churn_rate": 19.66
+      }
+    ],
+    "Dependents": [
+      {
+        "Dependents": "No",
+        "total_customers": 4933,
+        "churn_count": 1543,
+        "churn_rate": 31.28
+      },
+      {
+        "Dependents": "Yes",
+        "total_customers": 2110,
+        "churn_count": 326,
+        "churn_rate": 15.45
+      }
+    ],
+    "PhoneService": [
+      {
+        "PhoneService": "No",
+        "total_customers": 682,
+        "churn_count": 170,
+        "churn_rate": 24.93
+      },
+      {
+        "PhoneService": "Yes",
+        "total_customers": 6361,
+        "churn_count": 1699,
+        "churn_rate": 26.71
+      }
+    ],
+    "MultipleLines": [
+      {
+        "MultipleLines": "No",
+        "total_customers": 3390,
+        "churn_count": 849,
+        "churn_rate": 25.04
+      },
+      {
+        "MultipleLines": "No phone service",
+        "total_customers": 682,
+        "churn_count": 170,
+        "churn_rate": 24.93
+      },
+      {
+        "MultipleLines": "Yes",
+        "total_customers": 2971,
+        "churn_count": 850,
+        "churn_rate": 28.61
+      }
+    ],
+    "InternetService": [
+      {
+        "InternetService": "DSL",
+        "total_customers": 2421,
+        "churn_count": 459,
+        "churn_rate": 18.96
+      },
+      {
+        "InternetService": "Fiber optic",
+        "total_customers": 3096,
+        "churn_count": 1297,
+        "churn_rate": 41.89
+      },
+      {
+        "InternetService": "No",
+        "total_customers": 1526,
+        "churn_count": 113,
+        "churn_rate": 7.4
+      }
+    ],
+    "OnlineSecurity": [
+      {
+        "OnlineSecurity": "No",
+        "total_customers": 3498,
+        "churn_count": 1461,
+        "churn_rate": 41.77
+      },
+      {
+        "OnlineSecurity": "No internet service",
+        "total_customers": 1526,
+        "churn_count": 113,
+        "churn_rate": 7.4
+      },
+      {
+        "OnlineSecurity": "Yes",
+        "total_customers": 2019,
+        "churn_count": 295,
+        "churn_rate": 14.61
+      }
+    ],
+    "OnlineBackup": [
+      {
+        "OnlineBackup": "No",
+        "total_customers": 3088,
+        "churn_count": 1233,
+        "churn_rate": 39.93
+      },
+      {
+        "OnlineBackup": "No internet service",
+        "total_customers": 1526,
+        "churn_count": 113,
+        "churn_rate": 7.4
+      },
+      {
+        "OnlineBackup": "Yes",
+        "total_customers": 2429,
+        "churn_count": 523,
+        "churn_rate": 21.53
+      }
+    ],
+    "DeviceProtection": [
+      {
+        "DeviceProtection": "No",
+        "total_customers": 3095,
+        "churn_count": 1211,
+        "churn_rate": 39.13
+      },
+      {
+        "DeviceProtection": "No internet service",
+        "total_customers": 1526,
+        "churn_count": 113,
+        "churn_rate": 7.4
+      },
+      {
+        "DeviceProtection": "Yes",
+        "total_customers": 2422,
+        "churn_count": 545,
+        "churn_rate": 22.5
+      }
+    ],
+    "TechSupport": [
+      {
+        "TechSupport": "No",
+        "total_customers": 3473,
+        "churn_count": 1446,
+        "churn_rate": 41.64
+      },
+      {
+        "TechSupport": "No internet service",
+        "total_customers": 1526,
+        "churn_count": 113,
+        "churn_rate": 7.4
+      },
+      {
+        "TechSupport": "Yes",
+        "total_customers": 2044,
+        "churn_count": 310,
+        "churn_rate": 15.17
+      }
+    ],
+    "StreamingTV": [
+      {
+        "StreamingTV": "No",
+        "total_customers": 2810,
+        "churn_count": 942,
+        "churn_rate": 33.52
+      },
+      {
+        "StreamingTV": "No internet service",
+        "total_customers": 1526,
+        "churn_count": 113,
+        "churn_rate": 7.4
+      },
+      {
+        "StreamingTV": "Yes",
+        "total_customers": 2707,
+        "churn_count": 814,
+        "churn_rate": 30.07
+      }
+    ],
+    "StreamingMovies": [
+      {
+        "StreamingMovies": "No",
+        "total_customers": 2785,
+        "churn_count": 938,
+        "churn_rate": 33.68
+      },
+      {
+        "StreamingMovies": "No internet service",
+        "total_customers": 1526,
+        "churn_count": 113,
+        "churn_rate": 7.4
+      },
+      {
+        "StreamingMovies": "Yes",
+        "total_customers": 2732,
+        "churn_count": 818,
+        "churn_rate": 29.94
+      }
+    ],
+    "Contract": [
+      {
+        "Contract": "Month-to-month",
+        "total_customers": 3875,
+        "churn_count": 1655,
+        "churn_rate": 42.71
+      },
+      {
+        "Contract": "One year",
+        "total_customers": 1473,
+        "churn_count": 166,
+        "churn_rate": 11.27
+      },
+      {
+        "Contract": "Two year",
+        "total_customers": 1695,
+        "churn_count": 48,
+        "churn_rate": 2.83
+      }
+    ],
+    "PaperlessBilling": [
+      {
+        "PaperlessBilling": "No",
+        "total_customers": 2872,
+        "churn_count": 469,
+        "churn_rate": 16.33
+      },
+      {
+        "PaperlessBilling": "Yes",
+        "total_customers": 4171,
+        "churn_count": 1400,
+        "churn_rate": 33.57
+      }
+    ],
+    "PaymentMethod": [
+      {
+        "PaymentMethod": "Bank transfer (automatic)",
+        "total_customers": 1544,
+        "churn_count": 258,
+        "churn_rate": 16.71
+      },
+      {
+        "PaymentMethod": "Credit card (automatic)",
+        "total_customers": 1522,
+        "churn_count": 232,
+        "churn_rate": 15.24
+      },
+      {
+        "PaymentMethod": "Electronic check",
+        "total_customers": 2365,
+        "churn_count": 1071,
+        "churn_rate": 45.29
+      },
+      {
+        "PaymentMethod": "Mailed check",
+        "total_customers": 1612,
+        "churn_count": 308,
+        "churn_rate": 19.11
+      }
+    ]
+  },
+  "collinearity_analysis": {
+    "pearson_correlation": {
+      "tenure": {
+        "tenure": 1.0,
+        "MonthlyCharges": 0.247,
+        "TotalCharges_numeric": 0.826
+      },
+      "MonthlyCharges": {
+        "tenure": 0.247,
+        "MonthlyCharges": 1.0,
+        "TotalCharges_numeric": 0.651
+      },
+      "TotalCharges_numeric": {
+        "tenure": 0.826,
+        "MonthlyCharges": 0.651,
+        "TotalCharges_numeric": 1.0
+      }
+    },
+    "spearman_correlation": {
+      "tenure": {
+        "tenure": 1.0,
+        "MonthlyCharges": 0.275,
+        "TotalCharges_numeric": 0.889
+      },
+      "MonthlyCharges": {
+        "tenure": 0.275,
+        "MonthlyCharges": 1.0,
+        "TotalCharges_numeric": 0.638
+      },
+      "TotalCharges_numeric": {
+        "tenure": 0.889,
+        "MonthlyCharges": 0.638,
+        "TotalCharges_numeric": 1.0
+      }
+    },
+    "observation": "TotalCharges exhibits strong linear collinearity with tenure (r=0.826) and moderate correlation with MonthlyCharges (r=0.651), as TotalCharges ~= tenure * MonthlyCharges. While tree ensembles naturally handle this interaction, regularization in linear models must be calibrated to prevent variance inflation."
+  },
+  "leakage_audit": [
+    {
+      "feature": "customerID",
+      "available_at_pred": true,
+      "target_derived": false,
+      "post_outcome": false,
+      "suspicious_proxy": true,
+      "decision": "EXCLUDE",
+      "rationale": "High-cardinality unique customer identifier. Would lead to arbitrary overfitting; carries no behavioral generalizability."
+    },
+    {
+      "feature": "gender",
+      "available_at_pred": true,
+      "target_derived": false,
+      "post_outcome": false,
+      "suspicious_proxy": false,
+      "decision": "KEEP",
+      "rationale": "Demographic attribute known at sign-up. Safe."
+    },
+    {
+      "feature": "SeniorCitizen",
+      "available_at_pred": true,
+      "target_derived": false,
+      "post_outcome": false,
+      "suspicious_proxy": false,
+      "decision": "KEEP",
+      "rationale": "Demographic indicator known at sign-up. Safe."
+    },
+    {
+      "feature": "Partner",
+      "available_at_pred": true,
+      "target_derived": false,
+      "post_outcome": false,
+      "suspicious_proxy": false,
+      "decision": "KEEP",
+      "rationale": "Demographic account status. Safe."
+    },
+    {
+      "feature": "Dependents",
+      "available_at_pred": true,
+      "target_derived": false,
+      "post_outcome": false,
+      "suspicious_proxy": false,
+      "decision": "KEEP",
+      "rationale": "Demographic account status. Safe."
+    },
+    {
+      "feature": "tenure",
+      "available_at_pred": true,
+      "target_derived": false,
+      "post_outcome": false,
+      "suspicious_proxy": false,
+      "decision": "KEEP",
+      "rationale": "Elapsed duration in months as an active account prior to prediction point. Safe."
+    },
+    {
+      "feature": "PhoneService",
+      "available_at_pred": true,
+      "target_derived": false,
+      "post_outcome": false,
+      "suspicious_proxy": false,
+      "decision": "KEEP",
+      "rationale": "Active subscribed service catalog entry. Safe."
+    },
+    {
+      "feature": "MultipleLines",
+      "available_at_pred": true,
+      "target_derived": false,
+      "post_outcome": false,
+      "suspicious_proxy": false,
+      "decision": "KEEP",
+      "rationale": "Active subscribed service catalog entry. Safe."
+    },
+    {
+      "feature": "InternetService",
+      "available_at_pred": true,
+      "target_derived": false,
+      "post_outcome": false,
+      "suspicious_proxy": false,
+      "decision": "KEEP",
+      "rationale": "Active subscribed service catalog entry (DSL, Fiber, None). Safe."
+    },
+    {
+      "feature": "OnlineSecurity",
+      "available_at_pred": true,
+      "target_derived": false,
+      "post_outcome": false,
+      "suspicious_proxy": false,
+      "decision": "KEEP",
+      "rationale": "Active add-on service. Safe."
+    },
+    {
+      "feature": "OnlineBackup",
+      "available_at_pred": true,
+      "target_derived": false,
+      "post_outcome": false,
+      "suspicious_proxy": false,
+      "decision": "KEEP",
+      "rationale": "Active add-on service. Safe."
+    },
+    {
+      "feature": "DeviceProtection",
+      "available_at_pred": true,
+      "target_derived": false,
+      "post_outcome": false,
+      "suspicious_proxy": false,
+      "decision": "KEEP",
+      "rationale": "Active add-on service. Safe."
+    },
+    {
+      "feature": "TechSupport",
+      "available_at_pred": true,
+      "target_derived": false,
+      "post_outcome": false,
+      "suspicious_proxy": false,
+      "decision": "KEEP",
+      "rationale": "Active technical assistance entitlement. Safe."
+    },
+    {
+      "feature": "StreamingTV",
+      "available_at_pred": true,
+      "target_derived": false,
+      "post_outcome": false,
+      "suspicious_proxy": false,
+      "decision": "KEEP",
+      "rationale": "Active entertainment add-on. Safe."
+    },
+    {
+      "feature": "StreamingMovies",
+      "available_at_pred": true,
+      "target_derived": false,
+      "post_outcome": false,
+      "suspicious_proxy": false,
+      "decision": "KEEP",
+      "rationale": "Active entertainment add-on. Safe."
+    },
+    {
+      "feature": "Contract",
+      "available_at_pred": true,
+      "target_derived": false,
+      "post_outcome": false,
+      "suspicious_proxy": false,
+      "decision": "KEEP",
+      "rationale": "Billing contract commitment tier at observation time. Safe."
+    },
+    {
+      "feature": "PaperlessBilling",
+      "available_at_pred": true,
+      "target_derived": false,
+      "post_outcome": false,
+      "suspicious_proxy": false,
+      "decision": "KEEP",
+      "rationale": "Billing delivery preference. Safe."
+    },
+    {
+      "feature": "PaymentMethod",
+      "available_at_pred": true,
+      "target_derived": false,
+      "post_outcome": false,
+      "suspicious_proxy": false,
+      "decision": "KEEP",
+      "rationale": "Account payment method. Safe."
+    },
+    {
+      "feature": "MonthlyCharges",
+      "available_at_pred": true,
+      "target_derived": false,
+      "post_outcome": false,
+      "suspicious_proxy": false,
+      "decision": "KEEP",
+      "rationale": "Current monthly recurring billing rate. Safe."
+    },
+    {
+      "feature": "TotalCharges",
+      "available_at_pred": true,
+      "target_derived": false,
+      "post_outcome": false,
+      "suspicious_proxy": false,
+      "decision": "KEEP",
+      "rationale": "Cumulative charges present in snapshot. Candidate predictor; cross-sectional snapshot means temporal sequence cannot be verified as true prospective window. Blank for tenure=0 to be imputed as 0.0."
+    },
+    {
+      "feature": "Churn",
+      "available_at_pred": false,
+      "target_derived": true,
+      "post_outcome": true,
+      "suspicious_proxy": true,
+      "decision": "TARGET",
+      "rationale": "Ground truth binary outcome variable. Separated as target y."
+    }
+  ],
+  "feature_engineering_candidates": [
+    {
+      "candidate_feature": "tenure_group",
+      "formula": "Categorical binning: [0-12, 13-24, 25-48, 49-72 months]",
+      "information_source": "tenure",
+      "potential_redundancy": "High correlation with continuous tenure; tree ensembles split tenure directly, but binning may assist linear models in capturing non-linear hazard curves.",
+      "leakage_risk": "None (deterministic function of snapshot tenure).",
+      "business_meaning": "Segments customer lifecycle phase (early onboarding danger zone vs mature loyalty).",
+      "phase_3_status": "APPROVED FOR EXPERIMENT",
+      "keep_candidate": true,
+      "status": "APPROVED FOR EXPERIMENT"
+    },
+    {
+      "candidate_feature": "charges_ratio (monthly_to_total_ratio)",
+      "formula": "MonthlyCharges / (TotalCharges + 1.0)",
+      "information_source": "MonthlyCharges, TotalCharges",
+      "potential_redundancy": "High redundancy with tenure. Since TotalCharges \u2248 tenure * MonthlyCharges, charges_ratio \u2248 1 / (tenure + 1 / MonthlyCharges), making it an inverse surrogate of tenure. The +1.0 denominator smoothing offset prevents division by zero for tenure=0 but introduces scaling distortion for low spenders.",
+      "leakage_risk": "Low direct leakage, but questionable validity given lack of temporal billing sequence in snapshot.",
+      "business_meaning": "Unverified hypothesis: conjectured to capture recent billing increases or plan changes, but cannot be confirmed without longitudinal invoices.",
+      "phase_3_status": "CANDIDATE \u2014 VALIDATE",
+      "keep_candidate": true,
+      "status": "CANDIDATE \u2014 VALIDATE"
+    },
+    {
+      "candidate_feature": "total_services_subscribed",
+      "formula": "Integer sum of 9 distinct active services (range 1-9): (PhoneService == 'Yes') + (MultipleLines == 'Yes') + (InternetService != 'No') + (OnlineSecurity == 'Yes') + (OnlineBackup == 'Yes') + (DeviceProtection == 'Yes') + (TechSupport == 'Yes') + (StreamingTV == 'Yes') + (StreamingMovies == 'Yes')",
+      "information_source": "PhoneService, MultipleLines, InternetService, OnlineSecurity, OnlineBackup, DeviceProtection, TechSupport, StreamingTV, StreamingMovies",
+      "potential_redundancy": "Direct composite of 9 catalog features that are already one-hot encoded individually in baseline.",
+      "leakage_risk": "None (active service entitlements in snapshot).",
+      "business_meaning": "Product breadth and ecosystem depth; hypothesis that higher subscription count increases switching barrier.",
+      "phase_3_status": "APPROVED FOR EXPERIMENT",
+      "keep_candidate": true,
+      "status": "APPROVED FOR EXPERIMENT"
+    },
+    {
+      "candidate_feature": "has_tech_support_or_security",
+      "formula": "Binary flag: 1 if (TechSupport == 'Yes' or OnlineSecurity == 'Yes') else 0",
+      "information_source": "TechSupport, OnlineSecurity",
+      "potential_redundancy": "High redundancy with individual one-hot indicators for TechSupport and OnlineSecurity; may add no incremental signal beyond baseline.",
+      "leakage_risk": "None.",
+      "business_meaning": "Assistance and security umbrella; accounts with technical/security assistance exhibit lower observed churn rates in the snapshot.",
+      "phase_3_status": "CANDIDATE \u2014 VALIDATE",
+      "keep_candidate": true,
+      "status": "CANDIDATE \u2014 VALIDATE"
+    },
+    {
+      "candidate_feature": "auto_payment_indicator",
+      "formula": "Binary flag: 1 if 'automatic' in PaymentMethod else 0 (aggregates Bank transfer and Credit card automatic payments)",
+      "information_source": "PaymentMethod",
+      "potential_redundancy": "Partially redundant with one-hot encoded PaymentMethod categories; tests whether collapsing automatic methods regularizes linear models.",
+      "leakage_risk": "None.",
+      "business_meaning": "Automated recurring billing vs manual payment action (Electronic check, Mailed check).",
+      "phase_3_status": "APPROVED FOR EXPERIMENT",
+      "keep_candidate": true,
+      "status": "APPROVED FOR EXPERIMENT"
+    },
+    {
+      "candidate_feature": "support_contact_frequency",
+      "formula": "N/A (Timestamped ticket logs not present in Telco dataset)",
+      "information_source": "N/A",
+      "potential_redundancy": "N/A",
+      "leakage_risk": "N/A",
+      "business_meaning": "Customer service friction and complaint volume.",
+      "phase_3_status": "EXCLUDE",
+      "keep_candidate": false,
+      "status": "EXCLUDE (Unavailable in dataset)"
+    },
+    {
+      "candidate_feature": "usage_trend_delta",
+      "formula": "N/A (Monthly gigabytes/minutes time-series not present)",
+      "information_source": "N/A",
+      "potential_redundancy": "N/A",
+      "leakage_risk": "N/A",
+      "business_meaning": "Decaying usage trend preceding cancellation.",
+      "phase_3_status": "EXCLUDE",
+      "keep_candidate": false,
+      "status": "EXCLUDE (Unavailable in dataset)"
+    },
+    {
+      "candidate_feature": "recent_billing_change",
+      "formula": "N/A (Previous billing period charge amounts not present)",
+      "information_source": "N/A",
+      "potential_redundancy": "N/A",
+      "leakage_risk": "N/A",
+      "business_meaning": "Bill shock from pricing increases.",
+      "phase_3_status": "EXCLUDE",
+      "keep_candidate": false,
+      "status": "EXCLUDE (Unavailable in dataset)"
+    }
+  ],
+  "temporal_limitations": {
+    "dataset_type": "Cross-sectional customer snapshot benchmark",
+    "prospective_sequence": "NOT PRESENT (Dataset does not contain timestamped events T -> observation window -> churn event)",
+    "prediction_time_assumption": "Cross-sectional snapshot interpretation. Not a true prospective or time-to-future churn system.",
+    "TotalCharges_interpretation": "Cumulative historical spend as reported in customer snapshot. Retained as candidate predictor but does not constitute proof of future-only prediction window; temporal leakage cannot be ruled out purely from column naming."
+  },
+  "feature_engineering_ablation_protocol": {
+    "experiment_a": "Baseline trained on verified original cleaned features (19 predictors)",
+    "experiment_b": "Original features + candidate engineered feature(s)",
+    "retention_rule": "Retain engineered features only if empirical ablation demonstrates meaningful, defensible, and statistically stable lift over Experiment A without artificial complexity inflation."
+  },
+  "generated_figures": [
+    "/app/applet/reports/figures/01_target_distribution.png",
+    "/app/applet/reports/figures/02_tenure_vs_churn.png",
+    "/app/applet/reports/figures/03_monthly_charges_kde_churn.png",
+    "/app/applet/reports/figures/04_churn_rate_by_contract.png",
+    "/app/applet/reports/figures/05_churn_by_internet_and_payment.png",
+    "/app/applet/reports/figures/06_numerical_correlation_matrix.png"
+  ]
+}

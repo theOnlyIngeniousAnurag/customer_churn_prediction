@@ -1,0 +1,173 @@
+{
+  "false_positives": {
+    "count": 84,
+    "median_tenure": 6.0,
+    "mean_tenure": 7.68,
+    "median_monthly_charges": 77.3,
+    "mean_monthly_charges": 77.12,
+    "median_total_charges": 442.7,
+    "mean_total_charges": 654.19,
+    "contract_distribution_pct": {
+      "Month-to-month": 98.81,
+      "One year": 1.19
+    },
+    "internet_service_pct": {
+      "Fiber optic": 85.71,
+      "DSL": 14.29
+    },
+    "payment_method_pct": {
+      "Electronic check": 72.62,
+      "Mailed check": 21.43,
+      "Credit card (automatic)": 3.57,
+      "Bank transfer (automatic)": 2.38
+    },
+    "tech_support_pct": {
+      "No": 89.29,
+      "Yes": 10.71
+    },
+    "online_security_pct": {
+      "No": 91.67,
+      "Yes": 8.33
+    }
+  },
+  "false_negatives": {
+    "count": 190,
+    "median_tenure": 22.0,
+    "mean_tenure": 26.24,
+    "median_monthly_charges": 73.9,
+    "mean_monthly_charges": 68.69,
+    "median_total_charges": 1721.58,
+    "mean_total_charges": 2223.33,
+    "contract_distribution_pct": {
+      "Month-to-month": 76.84,
+      "One year": 18.42,
+      "Two year": 4.74
+    },
+    "internet_service_pct": {
+      "Fiber optic": 51.05,
+      "DSL": 35.79,
+      "No": 13.16
+    },
+    "payment_method_pct": {
+      "Electronic check": 37.37,
+      "Mailed check": 21.58,
+      "Bank transfer (automatic)": 21.05,
+      "Credit card (automatic)": 20.0
+    },
+    "tech_support_pct": {
+      "No": 60.53,
+      "Yes": 26.32,
+      "No internet service": 13.16
+    },
+    "online_security_pct": {
+      "No": 60.0,
+      "Yes": 26.84,
+      "No internet service": 13.16
+    }
+  },
+  "true_positives": {
+    "count": 184,
+    "median_tenure": 3.0,
+    "mean_tenure": 6.37,
+    "median_monthly_charges": 78.9,
+    "mean_monthly_charges": 76.98,
+    "median_total_charges": 221.45,
+    "mean_total_charges": 551.28,
+    "contract_distribution_pct": {
+      "Month-to-month": 99.46,
+      "One year": 0.54
+    },
+    "internet_service_pct": {
+      "Fiber optic": 84.24,
+      "DSL": 15.76
+    },
+    "payment_method_pct": {
+      "Electronic check": 73.37,
+      "Mailed check": 10.33,
+      "Bank transfer (automatic)": 9.24,
+      "Credit card (automatic)": 7.07
+    },
+    "tech_support_pct": {
+      "No": 94.57,
+      "Yes": 5.43
+    },
+    "online_security_pct": {
+      "No": 94.57,
+      "Yes": 5.43
+    }
+  },
+  "true_negatives": {
+    "count": 951,
+    "median_tenure": 42.0,
+    "mean_tenure": 40.13,
+    "median_monthly_charges": 60.3,
+    "mean_monthly_charges": 59.52,
+    "median_total_charges": 1818.9,
+    "mean_total_charges": 2652.89,
+    "contract_distribution_pct": {
+      "Month-to-month": 37.96,
+      "Two year": 34.38,
+      "One year": 27.66
+    },
+    "internet_service_pct": {
+      "DSL": 39.43,
+      "Fiber optic": 30.39,
+      "No": 30.18
+    },
+    "payment_method_pct": {
+      "Credit card (automatic)": 26.81,
+      "Mailed check": 26.08,
+      "Bank transfer (automatic)": 25.34,
+      "Electronic check": 21.77
+    },
+    "tech_support_pct": {
+      "No": 35.54,
+      "Yes": 34.28,
+      "No internet service": 30.18
+    },
+    "online_security_pct": {
+      "No": 35.33,
+      "Yes": 34.49,
+      "No internet service": 30.18
+    }
+  },
+  "all_test_customers": {
+    "count": 1409,
+    "median_tenure": 28.0,
+    "mean_tenure": 31.92,
+    "median_monthly_charges": 69.95,
+    "mean_monthly_charges": 64.09,
+    "median_total_charges": 1394.55,
+    "mean_total_charges": 2201.36,
+    "contract_distribution_pct": {
+      "Month-to-month": 54.86,
+      "Two year": 23.85,
+      "One year": 21.29
+    },
+    "internet_service_pct": {
+      "Fiber optic": 43.51,
+      "DSL": 34.35,
+      "No": 22.14
+    },
+    "payment_method_pct": {
+      "Electronic check": 33.64,
+      "Mailed check": 23.14,
+      "Credit card (automatic)": 21.93,
+      "Bank transfer (automatic)": 21.29
+    },
+    "tech_support_pct": {
+      "No": 49.82,
+      "Yes": 28.03,
+      "No internet service": 22.14
+    },
+    "online_security_pct": {
+      "No": 49.75,
+      "Yes": 28.11,
+      "No internet service": 22.14
+    }
+  },
+  "observed_patterns": [
+    "False positives (FP) were concentrated among short-tenure, month-to-month fiber optic customers paying via Electronic check.",
+    "False negatives (FN) were observed among longer-tenure or higher-spend churners who had subscribed to add-on services or had non-monthly contracts."
+  ]
+}

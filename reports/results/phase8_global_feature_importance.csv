@@ -1,0 +1,31 @@
+rank,feature,importance,importance_pct
+1,tenure,0.2021,20.21
+2,TotalCharges,0.1435,14.35
+3,MonthlyCharges,0.0915,9.15
+4,InternetService_Fiber optic,0.0913,9.13
+5,PaymentMethod_Electronic check,0.0742,7.42
+6,Contract_Two year,0.0717,7.17
+7,OnlineSecurity_Yes,0.0385,3.85
+8,Contract_One year,0.0377,3.77
+9,TechSupport_Yes,0.0259,2.59
+10,PaperlessBilling_Yes,0.018,1.8
+11,DeviceProtection_No internet service,0.0171,1.71
+12,OnlineSecurity_No internet service,0.0164,1.64
+13,StreamingMovies_No internet service,0.0156,1.56
+14,TechSupport_No internet service,0.0152,1.52
+15,OnlineBackup_Yes,0.0144,1.44
+16,InternetService_No,0.0124,1.24
+17,StreamingTV_No internet service,0.0121,1.21
+18,MultipleLines_Yes,0.0119,1.19
+19,Dependents_Yes,0.0111,1.11
+20,OnlineBackup_No internet service,0.0111,1.11
+21,SeniorCitizen_1,0.009,0.9
+22,Partner_Yes,0.0089,0.89
+23,StreamingMovies_Yes,0.0082,0.82
+24,DeviceProtection_Yes,0.0082,0.82
+25,gender_Male,0.0077,0.77
+26,StreamingTV_Yes,0.0076,0.76
+27,PaymentMethod_Credit card (automatic),0.0069,0.69
+28,PaymentMethod_Mailed check,0.006,0.6
+29,PhoneService_Yes,0.0029,0.29
+30,MultipleLines_No phone service,0.0026,0.26

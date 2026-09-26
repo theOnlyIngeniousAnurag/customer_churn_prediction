@@ -1,0 +1,105 @@
+{
+  "phase": "Phase 7",
+  "model": "Optimized Random Forest",
+  "model_parameters": {
+    "n_estimators": 300,
+    "max_depth": 8,
+    "min_samples_leaf": 2,
+    "min_samples_split": 2,
+    "max_features": "sqrt",
+    "random_state": 42,
+    "n_jobs": -1
+  },
+  "test_set_size": 1409,
+  "test_set_used": true,
+  "threshold_default": 0.5,
+  "roc_auc": 0.8429,
+  "pr_auc": 0.6562,
+  "precision": 0.6866,
+  "recall": 0.492,
+  "f1": 0.5732,
+  "brier_score": 0.1362,
+  "confusion_matrix": {
+    "tn": 951,
+    "fp": 84,
+    "fn": 190,
+    "tp": 184
+  },
+  "calibration": {
+    "brier_score": 0.1362,
+    "calibration_curve_prob_true": [
+      0.0402,
+      0.1378,
+      0.1899,
+      0.3526,
+      0.4264,
+      0.6036,
+      0.6806,
+      0.7714,
+      0.9333
+    ],
+    "calibration_curve_prob_pred": [
+      0.0417,
+      0.1457,
+      0.2464,
+      0.3489,
+      0.4527,
+      0.5518,
+      0.6482,
+      0.7492,
+      0.8234
+    ]
+  },
+  "operational_thresholds": {
+    "default_0_50": {
+      "threshold": 0.5,
+      "precision": 0.6866,
+      "recall": 0.492,
+      "f1": 0.5732,
+      "flagged_customers": 268
+    },
+    "highest_f1_test_set": {
+      "threshold": 0.3,
+      "precision": 0.5316,
+      "recall": 0.7861,
+      "f1": 0.6343,
+      "flagged_customers": 553
+    },
+    "high_recall_operating_point_0_30": {
+      "threshold": 0.3,
+      "precision": 0.5316,
+      "recall": 0.7861,
+      "f1": 0.6343,
+      "flagged_customers": 553
+    },
+    "high_precision_operating_point_0_60": {
+      "threshold": 0.6,
+      "precision": 0.7452,
+      "recall": 0.3128,
+      "f1": 0.4407,
+      "flagged_customers": 157
+    }
+  },
+  "comparison_phase6_cv_vs_phase7_test": {
+    "roc_auc": {
+      "phase6_cv": "0.8459 \u00b1 0.0110",
+      "phase7_test": 0.8429
+    },
+    "pr_auc": {
+      "phase6_cv": "0.6643 \u00b1 0.0211",
+      "phase7_test": 0.6562
+    },
+    "precision_default": {
+      "phase6_cv": 0.6784,
+      "phase7_test": 0.6866
+    },
+    "recall_default": {
+      "phase6_cv": 0.4876,
+      "phase7_test": 0.492
+    },
+    "f1_default": {
+      "phase6_cv": 0.5671,
+      "phase7_test": 0.5732
+    }
+  }
+}

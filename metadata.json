@@ -1,0 +1,6 @@
+{
+  "name": "Customer Churn Prediction & Retention Intelligence System",
+  "description": "A reproducible machine-learning decision-support system for predicting customer churn, ranking high-risk customers, and providing interpretable retention intelligence.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

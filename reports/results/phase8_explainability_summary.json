@@ -1,0 +1,106 @@
+{
+  "phase": "Phase 8",
+  "model": "Optimized Random Forest",
+  "total_customers_scored": 7043,
+  "risk_category_counts": {
+    "Low Risk": 4354,
+    "Medium Risk": 1327,
+    "High Risk": 934,
+    "Very High Risk": 428
+  },
+  "risk_category_percentages": {
+    "Low Risk": 61.82,
+    "Medium Risk": 18.84,
+    "High Risk": 13.26,
+    "Very High Risk": 6.08
+  },
+  "high_risk_or_very_high_risk_count": 1362,
+  "top_10_global_features": [
+    {
+      "rank": 1,
+      "feature": "tenure",
+      "importance": 0.2021,
+      "importance_pct": 20.21
+    },
+    {
+      "rank": 2,
+      "feature": "TotalCharges",
+      "importance": 0.1435,
+      "importance_pct": 14.35
+    },
+    {
+      "rank": 3,
+      "feature": "MonthlyCharges",
+      "importance": 0.0915,
+      "importance_pct": 9.15
+    },
+    {
+      "rank": 4,
+      "feature": "InternetService_Fiber optic",
+      "importance": 0.0913,
+      "importance_pct": 9.13
+    },
+    {
+      "rank": 5,
+      "feature": "PaymentMethod_Electronic check",
+      "importance": 0.0742,
+      "importance_pct": 7.42
+    },
+    {
+      "rank": 6,
+      "feature": "Contract_Two year",
+      "importance": 0.0717,
+      "importance_pct": 7.17
+    },
+    {
+      "rank": 7,
+      "feature": "OnlineSecurity_Yes",
+      "importance": 0.0385,
+      "importance_pct": 3.85
+    },
+    {
+      "rank": 8,
+      "feature": "Contract_One year",
+      "importance": 0.0377,
+      "importance_pct": 3.77
+    },
+    {
+      "rank": 9,
+      "feature": "TechSupport_Yes",
+      "importance": 0.0259,
+      "importance_pct": 2.59
+    },
+    {
+      "rank": 10,
+      "feature": "PaperlessBilling_Yes",
+      "importance": 0.018,
+      "importance_pct": 1.8
+    }
+  ],
+  "sample_customer_explanation": {
+    "customerID": "9300-AGZNL",
+    "churn_probability": 0.8608,
+    "risk_category": "Very High Risk",
+    "predicted_churn": true,
+    "review_reasons": [
+      "Month-to-month contract",
+      "Short customer tenure (1 mos <= 12 mos)",
+      "Fiber optic internet service",
+      "Payment via Electronic check",
+      "No OnlineSecurity service",
+      "No TechSupport service",
+      "High monthly charges ($94.00/mo >= $70.00/mo)",
+      "Paperless billing active",
+      "No OnlineBackup service",
+      "No DeviceProtection service"
+    ]
+  },
+  "artifacts_created": [
+    "reports/results/phase8_global_feature_importance.csv",
+    "reports/results/phase8_global_feature_importance.json",
+    "reports/results/phase8_customer_risk_scores.csv",
+    "reports/results/phase8_high_risk_customers.csv",
+    "reports/results/phase8_explainability_summary.json",
+    "reports/figures/phase8_global_feature_importance.png"
+  ]
+}

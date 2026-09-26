@@ -1,0 +1,38 @@
+{
+  "dataset_consistency": {
+    "raw_dataset_rows": 7043,
+    "raw_dataset_columns": 21,
+    "training_set_rows": 5634,
+    "test_set_rows": 1409,
+    "scored_customers_total": 7043,
+    "ranked_customers_csv_rows": 7043
+  },
+  "phase7_test_evaluation_consistency": {
+    "roc_auc": 0.8429,
+    "pr_auc": 0.6562,
+    "precision": 0.6866,
+    "recall": 0.492,
+    "f1": 0.5732,
+    "brier_score": 0.1362,
+    "confusion_matrix": {
+      "tn": 951,
+      "fp": 84,
+      "fn": 190,
+      "tp": 184,
+      "total": 1409
+    }
+  },
+  "phase8_risk_scoring_consistency": {
+    "low_risk_count": 4354,
+    "medium_risk_count": 1327,
+    "high_risk_count": 934,
+    "very_high_risk_count": 428,
+    "high_plus_very_high_count": 1362,
+    "high_plus_very_high_pct": 19.34
+  },
+  "ui_and_api_alignment": {
+    "express_data_service": "Verified aligned with phase8_high_risk_customers.csv and raw CSV",
+    "overview_kpis": "7,043 scored, 1,362 High/Very High (19.34%), 428 Very High (6.08%), 26.54% observed churn",
+    "model_insights_metrics": "ROC-AUC 0.8429, PR-AUC 0.6562, Brier 0.1362, TN=951, FP=84, FN=190, TP=184"
+  }
+}
