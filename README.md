@@ -284,7 +284,7 @@ customer-churn-prediction/
 
 ```bash
 # Clone repository
-git clone <REPOSITORY_URL>
+git clone https://github.com/theOnlyIngeniousAnurag/customer_churn_prediction
 cd customer-churn-prediction
 
 # Set up Python environment
