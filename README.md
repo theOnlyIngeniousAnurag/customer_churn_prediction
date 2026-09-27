@@ -1,11 +1,12 @@
 # Customer Churn Prediction & Retention Intelligence System
 
-> A reproducible machine-learning decision-support system for predicting customer churn, ranking high-risk customers, and providing interpretable insights for retention review.
+> A reproducible machine-learning decision-support system for predicting customer churn, ranking high-risk accounts, and providing interpretable insights for retention review.
 
 ![Python](https://img.shields.io/badge/Python-3.11-blue)
 ![Machine Learning](https://img.shields.io/badge/Machine%20Learning-Classification-orange)
 ![scikit-learn](https://img.shields.io/badge/scikit--learn-ML-F7931E)
-![Status](https://img.shields.io/badge/Status-Phase%2010%20Complete-brightgreen)
+![React](https://img.shields.io/badge/React-19-61DAFB)
+![Status](https://img.shields.io/badge/Status-Project%201%20Complete-brightgreen)
 ![License](https://img.shields.io/badge/License-MIT-green)
 
 ---
@@ -14,355 +15,321 @@
 
 * [Overview](#overview)
 * [Problem Statement](#problem-statement)
-* [Project Objectives](#project-objectives)
-* [Key Features](#key-features)
-* [Machine Learning Approach](#machine-learning-approach)
-* [System Workflow](#system-workflow)
-* [Dataset](#dataset)
-* [Data Preparation & Leakage Audit](#data-preparation--leakage-audit)
+* [Key Capabilities](#key-capabilities)
+* [Dataset Summary](#dataset-summary)
+* [Data Cleaning & Leakage Isolation](#data-cleaning--leakage-isolation)
 * [Exploratory Data Analysis](#exploratory-data-analysis)
-* [Feature Engineering Feasibility](#feature-engineering-feasibility)
-* [Model Development](#model-development)
-* [Model Evaluation](#model-evaluation)
-* [Model Selection](#model-selection)
-* [Explainability](#explainability)
-* [Risk Ranking](#risk-ranking)
+* [Feature Engineering & Ablation](#feature-engineering--ablation)
+* [Model Development & Optimization](#model-development--optimization)
+* [Final Holdout Evaluation Results](#final-holdout-evaluation-results)
+* [Threshold Analysis](#threshold-analysis)
+* [Portfolio Risk Ranking & Explainability](#portfolio-risk-ranking--explainability)
+* [Decision-Support Web Application](#decision-support-web-application)
 * [Project Structure](#project-structure)
 * [Technology Stack](#technology-stack)
-* [Installation](#installation)
-* [Usage](#usage)
-* [Reproducibility](#reproducibility)
-* [Results](#results)
+* [Installation & Setup](#installation--setup)
+* [Running the Application](#running-the-application)
+* [Testing & Quality Assurance](#testing--quality-assurance)
+* [Project Roadmap & Status](#project-roadmap--status)
 * [Limitations](#limitations)
-* [Quality Assurance](#quality-assurance)
-* [Documentation](#documentation)
-* [Author](#author)
+* [Documentation Links](#documentation-links)
 * [License](#license)
 
 ---
 
-# Overview
+## Overview
 
-Customer churn is a major challenge for subscription-based and recurring-service businesses. Acquiring a new customer can require significantly more effort than retaining an existing one. Identifying customers at elevated risk of churn empowers customer success and retention teams to prioritize proactive interventions.
+Customer churn poses a major challenge for subscription-based businesses, where acquiring a new customer is significantly more costly than retaining an existing subscriber. Identifying accounts exhibiting elevated risk of churn empowers customer success teams to prioritize proactive retention interventions.
 
-This project develops an end-to-end, technically sound machine-learning system that analyzes historical customer information and estimates the probability that a customer will churn.
+This project delivers an end-to-end machine-learning decision-support system that analyzes historical customer account attributes and estimates churn probabilities.
 
-Rather than producing only a binary prediction, the system provides:
-* Churn probability
-* Risk category (High, Medium, Low)
-* Customer risk ranking
-* Model-supported contributing factors
-* Evaluation metrics and calibration curves
-* Interpretable insights for retention teams
+Rather than producing a black-box binary label, the system provides:
+* Calibrated churn probabilities `P(Churn = Yes)`
+* Operational risk bands (Low, Medium, High, Very High Risk)
+* Ranked customer priority lists
+* Evidence-based, interpretable review reasons for customer success teams
+* Interactive web analytics dashboard for portfolio inspection
 
 ---
 
-# Problem Statement
+## Problem Statement
 
-The objective of this project is to predict whether a customer is likely to leave a subscription or recurring service based on historical customer information.
-
-The machine-learning problem is formulated as a **supervised binary classification task**:
+The system formulates customer churn prediction as a **supervised binary classification task**:
 
 ```text
-Customer Historical Data
-          ↓
-    Feature Processing
-          ↓
-     ML Classifier
-          ↓
-   Churn Probability
-          ↓
-  Risk Classification
-          ↓
- Customer Risk Ranking
-          ↓
-Retention Review Support
+Customer Account Data
+          │
+          ▼
+Leakage-Safe Preprocessing (Median Imputation + One-Hot Encoding + Scaling)
+          │
+          ▼
+Optimized Random Forest Classifier (n_estimators=300, max_depth=8)
+          │
+          ▼
+Calibrated Churn Probability & Operational Risk Banding
+          │
+          ▼
+Ranked Customer Directory & Evidence-Based Review Reasons
+          │
+          ▼
+React 19 Decision-Support Dashboard
 ```
 
 ---
 
-# Dataset
+## Key Capabilities
 
-## Dataset Source
-
-* **Dataset:** IBM Telco Customer Churn
-* **Source:** IBM Business Analytics Community / Telco Customer Churn on ICP4D
-* **Original URL:** `https://raw.githubusercontent.com/IBM/telco-customer-churn-on-icp4d/master/data/Telco-Customer-Churn.csv`
-* **License / Usage Terms:** Public domain / Apache 2.0 (IBM Community Sample Dataset)
-* **Dataset Size:** 7,043 rows x 21 columns
-* **Target Variable:** `Churn` ('No', 'Yes')
-  * Non-churners (`No`): 5,174 (73.46%)
-  * Churners (`Yes`): 1,869 (26.54%)
-  * Imbalance Ratio: 2.77:1
-* **Customer Identifier:** `customerID` (7,043 unique, 0 duplicates, excluded from feature set)
-
-## Dataset Characteristics
-
-The verified dataset contains 20 attributes covering:
-
-1. **Customer Demographics (4)**: `gender`, `SeniorCitizen`, `Partner`, `Dependents`
-2. **Account Tenure (1)**: `tenure` (0 to 72 months, median 29.0)
-3. **Phone Services (2)**: `PhoneService`, `MultipleLines`
-4. **Internet Services (7)**: `InternetService` (DSL, Fiber optic, None), `OnlineSecurity`, `OnlineBackup`, `DeviceProtection`, `TechSupport`, `StreamingTV`, `StreamingMovies`
-5. **Contract & Account (3)**: `Contract` (Month-to-month, One year, Two year), `PaperlessBilling`, `PaymentMethod` (Electronic check, Mailed check, Bank transfer, Credit card)
-6. **Billing History (2)**: `MonthlyCharges` (USD 18.25 to 118.75), `TotalCharges` (USD 18.80 to 8684.80)
-7. **Target (1)**: `Churn` (Yes / No)
+1. **Leakage-Isolated Preprocessing Pipeline:** Strict separation of training (5,634 rows) and holdout test (1,409 rows) sets; stateful transformers fitted exclusively on training data.
+2. **Validated Model Architecture:** Hyperparameter-tuned `RandomForestClassifier` selected via 5-fold stratified cross-validation over linear baselines and unconstrained trees.
+3. **Calibrated Risk Scoring:** Brier Score of `0.1362` and ROC-AUC of `0.8429` on the locked holdout test set.
+4. **Portfolio Risk Ranking:** Evaluates all 7,043 accounts into 4 operational risk bands, highlighting 1,362 High/Very High Risk accounts (19.34%).
+5. **Interactive Analytics Console:** Full-stack React 19 + Express application supporting real-time ID search, multi-field filtering, field sorting, pagination, and slide-over profile inspection drawers.
 
 ---
 
-# Data Preparation & Leakage Audit
+## Dataset Summary
 
-Before training any model, the dataset underwent a systematic data-quality and deep leakage audit:
-* **Missing Values:** 0 explicit `NaN` values across all 21 columns. 11 whitespace strings in `TotalCharges` (`" "`) corresponding strictly to new customer registrations where `tenure == 0` (unbilled signups).
-* **Duplicates:** 0 duplicate rows and 0 duplicate `customerID` entries.
-* **Leakage Audit:** Every feature was verified for prediction-time availability. 0 post-churn fields, cancellation dates, or target-derived indicators are present. `customerID` is isolated as an administrative identifier and excluded from candidate feature vectors.
-* **Outliers:** Evaluated IQR fences for numerical variables; 0 observations exceeded IQR fences (`tenure`: 0-72 mos, `MonthlyCharges`: $18.25-$118.75, `TotalCharges`: $18.80-$8684.80).
-
----
-
-# Exploratory Data Analysis
-
-Phase 2 exploratory analysis uncovered strong empirical associations with customer churn:
-
-1. **Contract Duration Effect:**
-   * Month-to-month contracts experience a **42.71% churn rate** (1,655 / 3,875).
-   * One-year contracts drop to **11.27% churn rate** (166 / 1,473).
-   * Two-year contracts drop to **2.83% churn rate** (48 / 1,695).
-2. **Tenure Lifecycle Dynamics:**
-   * Median tenure for churners is **10.0 months**, compared to **38.0 months** for non-churners (28-month difference).
-   * Cohort churn rate: 0–12 months = **47.44%**, 13–24 months = **28.71%**, 25–48 months = **20.39%**, 49–72 months = **9.51%**.
-3. **Internet Service & Pricing:**
-   * Fiber optic subscribers show an elevated churn rate of **41.89%** (1,297 / 3,096), compared to DSL (**18.96%**) and No Internet (**7.40%**).
-   * Churners have a median monthly charge of **$79.65**, vs **$64.43** for non-churners (associated with higher-tier unbundled plans).
-4. **Payment Method Friction:**
-   * Electronic check users experience a **45.29% churn rate** (1,071 / 2,365).
-   * Automated payment methods (Bank transfer: **16.71%**, Credit card: **15.24%**) demonstrate significantly lower churn rates.
-5. **Support & Security Value Services:**
-   * Customers without `TechSupport` churn at **41.64%** vs **15.17%** with TechSupport.
-   * Customers without `OnlineSecurity` churn at **41.77%** vs **14.61%** with OnlineSecurity.
-6. **Collinearity Observations:**
-   * `TotalCharges` exhibits strong linear collinearity with `tenure` ($r = 0.826$) and moderate correlation with `MonthlyCharges` ($r = 0.651$), reflecting the cumulative accounting identity $\text{TotalCharges} \approx \text{tenure} \times \text{MonthlyCharges}$.
-
-All 6 analytical charts are generated reproducibly in `reports/figures/`.
+* **Source:** IBM Telco Customer Churn Benchmark Dataset
+* **Volume:** 7,043 customer rows × 21 columns
+* **Target Variable:** `Churn` (`No`: 5,174 [73.46%], `Yes`: 1,869 [26.54%])
+* **Unique Identifier:** `customerID` (7,043 unique entries, excluded from predictive features)
+* **Attribute Coverage:** Demographics (`gender`, `SeniorCitizen`, `Partner`, `Dependents`), Tenure (`tenure`), Phone Services, Internet Services (`DSL`, `Fiber optic`, `None`), Contract Type (`Month-to-month`, `One year`, `Two year`), Billing & Payment (`PaperlessBilling`, `PaymentMethod`, `MonthlyCharges`, `TotalCharges`).
 
 ---
 
-# Feature Engineering Feasibility & Ablation Findings
+## Data Cleaning & Leakage Isolation
 
-Candidate features audited in Phase 2 and evaluated in Phase 3 ablation:
-* **`tenure_group`**: Lifecycle binning ([0-12, 13-24, 25-48, 49-72 mos]) — **Candidate for Phase 4**
-* **`total_services_subscribed`**: Integer sum of 9 catalog services (range 1-9) — **Redundant**
-* **`has_tech_support_or_security`**: Binary flag for high-retention assistance services — **Redundant**
-* **`auto_payment_indicator`**: Automated vs manual payment friction indicator — **Redundant**
-* **`charges_ratio`**: `MonthlyCharges / (TotalCharges + 1.0)` — **Redundant**
-* *Documented Limitations*: Support ticket logs, time-series usage volume deltas, and prior billing cycle changes are not available in this dataset and will not be artificially fabricated.
-
-### Phase 3 Ablation Results (5-Fold Stratified Cross-Validation on Training Set, N=5,634)
-| Feature Set | ROC-AUC | PR-AUC | Precision | Recall | F1 | Status |
-| :--- | :---: | :---: | :---: | :---: | :---: | :--- |
-| **Experiment A (Baseline, 19 raw)** | **0.8461** | **0.6615** | **0.6549** | **0.5438** | **0.5935** | Core Baseline |
-| **Exp B1 (+ `tenure_group`)** | 0.8465 | 0.6651 | 0.6685 | 0.5358 | 0.5941 | Phase 4 Candidate |
-| **Exp B2 (+ `total_services_subscribed`)** | 0.8461 | 0.6615 | 0.6549 | 0.5438 | 0.5935 | Excluded (Redundant) |
-| **Exp B3 (+ `has_tech_support_or_security`)** | 0.8459 | 0.6612 | 0.6540 | 0.5425 | 0.5924 | Excluded (Collinear) |
-| **Exp B4 (+ `auto_payment_indicator`)** | 0.8461 | 0.6614 | 0.6543 | 0.5438 | 0.5933 | Excluded (Redundant) |
-| **Exp B5 (+ `charges_ratio`)** | 0.8461 | 0.6617 | 0.6544 | 0.5438 | 0.5933 | Excluded (Redundant) |
-| **Exp C (All Candidates)** | 0.8464 | 0.6653 | 0.6668 | 0.5405 | 0.5963 | Excluded (Bloat) |
-
-*Assessment:* `tenure_group` produced a small observed improvement in PR-AUC and Precision in the training-only cross-validation experiment. It is retained as a candidate for Phase 4 validation rather than being considered conclusively beneficial. The final test set (N=1,409) remains strictly isolated and untouched.
+* **Whitespace String Handling:** 11 blank entries in `TotalCharges` (`" "`) corresponding to new signups (`tenure == 0`) were converted to `NaN` and imputed using the median value learned strictly from training data.
+* **Leakage Prevention Audit:** Verified zero post-churn fields or cancellation dates. `customerID` and `Churn` labels were dropped prior to feature transformation.
+* **Train/Test Partition:** Stratified 80/20 split yielding 5,634 training records and 1,409 locked holdout test records (`random_state = 42`).
 
 ---
 
-# Model Development
+## Exploratory Data Analysis
 
-## Baseline
-* **Model:** Logistic Regression (`sklearn.linear_model.LogisticRegression`)
-* **Parameters:** `max_iter=1000`, `random_state=42`, `C=1.0`, `penalty='l2'`, `solver='lbfgs'`
-* **Pipeline:** `TotalChargesCleaner` -> `ColumnTransformer` (`StandardScaler`, `OneHotEncoder(drop='first', handle_unknown='ignore')`) -> `LogisticRegression`
-* **Status:** **Phase 4 Complete** (5-fold Stratified CV on training set; test set untouched)
-
-## Candidate Models (Phase 5 Benchmarking)
-* **Decision Tree:** `DecisionTreeClassifier(random_state=42)` (un-tuned baseline)
-* **Random Forest:** `RandomForestClassifier(n_estimators=300, random_state=42, n_jobs=-1)` (un-tuned baseline)
-* **Status:** **Phase 10 Complete** (Benchmarking on identical 5-fold Stratified CV; test set untouched)
+Key empirical patterns observed during exploratory analysis:
+1. **Contract Friction:** Month-to-month subscribers experience a **42.71% churn rate**, compared to **11.27%** for 1-year contracts and **2.83%** for 2-year contracts.
+2. **Tenure Dynamics:** Median tenure for churners is **10.0 months**, vs **38.0 months** for non-churners.
+3. **Service Type Impact:** Fiber optic internet subscribers churn at **41.89%**, compared to **18.96%** for DSL and **7.40%** for non-internet users.
+4. **Payment Method:** Electronic check users exhibit an elevated churn rate of **45.29%**, vs **15.24%** for credit card auto-pay.
 
 ---
 
-# Model Evaluation
+## Feature Engineering & Ablation
 
-The primary evaluation metrics include:
-* **ROC-AUC:** Discrimination ability across all decision thresholds
-* **PR-AUC (Average Precision):** Area under the Precision-Recall curve
-* **Precision:** True Positive proportion among flagged customers (default 0.50 threshold)
-* **Recall:** Sensitivity to actual churners (default 0.50 threshold)
-* **F1-Score:** Harmonic balance of precision and recall (default 0.50 threshold)
+A 5-fold cross-validation ablation study on the training set (N=5,634) evaluated candidate features:
+* `tenure_group`: Lifecycle binning (`[0-12, 13-24, 25-48, 49-72]` months) — Retained as evaluated candidate.
+* Redundant feature candidates (`total_services_subscribed`, `has_tech_support_or_security`, `auto_payment_indicator`, `charges_ratio`) were excluded to prevent feature bloat and collinearity.
 
-### Benchmarking Comparison (Identical 5-Fold Stratified CV on Training Set, N=5,634)
-| Model | Features | ROC-AUC | PR-AUC | Precision | Recall | F1 | Notes |
-| :--- | :--- | :---: | :---: | :---: | :---: | :---: | :--- |
-| **Logistic Regression** | **Original** | **0.8461 ± 0.0126** | **0.6615 ± 0.0194** | **0.6549 ± 0.0284** | **0.5438 ± 0.0409** | **0.5935 ± 0.0304** | Core Baseline (19 raw features) |
-| Logistic Regression | + `tenure_group` | 0.8465 ± 0.0117 | 0.6651 ± 0.0134 | 0.6685 ± 0.0195 | 0.5358 ± 0.0360 | 0.5941 ± 0.0233 | Small lift in PR-AUC & Precision |
-| **Decision Tree** | **Original** | **0.6568 ± 0.0162** | **0.3793 ± 0.0173** | **0.4914 ± 0.0244** | **0.4983 ± 0.0208** | **0.4948 ± 0.0222** | Un-tuned (depth=23, 1097 leaves, overfit) |
-| Decision Tree | + `tenure_group` | 0.6660 ± 0.0159 | 0.3889 ± 0.0179 | 0.5034 ± 0.0255 | 0.5144 ± 0.0234 | 0.5087 ± 0.0225 | Un-tuned baseline |
-| **Random Forest** | **Original** | **0.8260 ± 0.0117** | **0.6241 ± 0.0309** | **0.6298 ± 0.0369** | **0.4769 ± 0.0230** | **0.5425 ± 0.0254** | Un-tuned 300 trees baseline |
-| Random Forest | + `tenure_group` | 0.8262 ± 0.0134 | 0.6214 ± 0.0334 | 0.6331 ± 0.0527 | 0.4729 ± 0.0341 | 0.5413 ± 0.0411 | Un-tuned 300 trees baseline |
-
-### Training Out-of-Fold Confusion Matrices (Default 0.50 Threshold, N=5,634)
-*Note on Metrics:* The fold-level cross-validation scores reported in the comparison table represent the arithmetic mean (and standard deviation) of metrics across the 5 independent evaluation folds. In contrast, the confusion matrix metrics below are calculated globally from the pooled out-of-fold predictions across all 5,634 training observations. Due to non-linear pooling across varying fold denominators, small differences (e.g., Random Forest CV mean Recall of 47.69% vs. pooled OOF Recall of 48.23%; Decision Tree CV mean Recall of 49.83% vs. pooled OOF Recall of 49.97%) are expected and statistically sound.
-
-* **Logistic Regression (Baseline):** TN: 3,710 | FP: 429 | FN: 682 | TP: 813 (Accuracy: 80.28%, Precision: 65.46%, Recall: 54.38%, F1: 59.41%)
-* **Decision Tree (Original):** TN: 3,365 | FP: 774 | FN: 748 | TP: 747 (Accuracy: 72.99%, Precision: 49.11%, Recall: 49.97%, F1: 49.54%)
-* **Random Forest (Original):** TN: 3,714 | FP: 425 | FN: 774 | TP: 721 (Accuracy: 78.72%, Precision: 62.91%, Recall: 48.23%, F1: 54.60%)
-
-### Feature Importance Highlights (Model-Based Impurity Reduction)
-* **Random Forest (Top 5):** `TotalCharges` (0.1893), `tenure` (0.1727), `MonthlyCharges` (0.1691), `InternetService_Fiber optic` (0.0400), `PaymentMethod_Electronic check` (0.0391)
-* **Decision Tree (Top 5):** `TotalCharges` (0.2016), `Contract_Two year` (0.1989), `MonthlyCharges` (0.1706), `tenure` (0.1017), `InternetService_Fiber optic` (0.0487)
-
-*Interpretation Notice:* The importance values are descriptive of how the fitted tree models reduced Gini impurity using the available encoded features. Correlation among `tenure`, `TotalCharges`, and `MonthlyCharges` can distribute or concentrate importance and therefore limits independent interpretation. These values reflect model-internal split criteria and do not represent causal effects.
-
-Full artifacts exported to `reports/results/decision_tree_feature_importance.csv` and `reports/results/random_forest_feature_importance.csv`.
+The preprocessor outputs 30 transformed features (3 scaled numericals + 27 one-hot-encoded categories).
 
 ---
 
-# Project Structure
+## Model Development & Optimization
+
+Cross-validation performance across model families (5-Fold Stratified CV on Training Set, N=5,634):
+
+| Model Family | Configuration | ROC-AUC | PR-AUC | Precision | Recall | F1 Score |
+| :--- | :--- | :---: | :---: | :---: | :---: | :---: |
+| **Logistic Regression** | L2 Regularized Baseline | 0.8436 | 0.6508 | 0.6549 | 0.5438 | 0.5935 |
+| **Decision Tree** | Un-tuned Baseline (depth 23) | 0.6568 | 0.3793 | 0.4914 | 0.4983 | 0.4948 |
+| **Random Forest** | Un-tuned Ensemble (300 trees) | 0.8260 | 0.6241 | 0.6298 | 0.4769 | 0.5425 |
+| **Random Forest (Optimized)** | `max_depth=8`, `min_samples_leaf=2` | **0.8459** | **0.6643** | **0.6612** | **0.5318** | **0.5895** |
+
+---
+
+## Final Holdout Evaluation Results
+
+Evaluated on the locked, untouched holdout test set (N = 1,409):
+
+| Metric | Holdout Test Score | Description |
+| :--- | :---: | :--- |
+| **ROC-AUC** | **0.8429** | Area Under Receiver Operating Characteristic Curve |
+| **PR-AUC** | **0.6562** | Area Under Precision-Recall Curve |
+| **Precision** | **0.6866** | True Positive Rate among predicted churners at 0.50 threshold |
+| **Recall** | **0.4920** | Sensitivity to actual churners at 0.50 threshold |
+| **F1 Score** | **0.5732** | Harmonic mean of Precision and Recall |
+| **Brier Score** | **0.1362** | Mean squared probability error (Calibration accuracy) |
+
+### Holdout Confusion Matrix (N = 1,409, 0.50 Threshold)
+
+```text
+                        Predicted Negative (No)    Predicted Positive (Yes)
+Actual Negative (No)          951 (TN)                   84 (FP)
+Actual Positive (Yes)         190 (FN)                  184 (TP)
+```
+
+---
+
+## Threshold Analysis
+
+Evaluating probability decision thresholds on the holdout test set demonstrates precision-recall flexibility:
+
+| Decision Threshold | Precision | Recall | F1 Score | Predicted High-Risk Count |
+| :---: | :---: | :---: | :---: | :---: |
+| **0.20** | 0.4358 | 0.8262 | 0.5706 | 709 |
+| **0.30** | 0.5284 | 0.7299 | **0.6129** | 511 |
+| **0.40** | 0.6095 | 0.5989 | 0.6042 | 368 |
+| **0.50 (Default)** | **0.6866** | **0.4920** | **0.5732** | **268** |
+| **0.60** | 0.7778 | 0.3556 | 0.4881 | 171 |
+| **0.70** | 0.8659 | 0.1898 | 0.3114 | 82 |
+
+---
+
+## Portfolio Risk Ranking & Explainability
+
+Applying the scoring engine across all 7,043 customer accounts categorizes the portfolio into 4 operational risk bands:
+
+| Risk Category | Probability Range | Customer Count | Portfolio Share | Observed Churn Rate |
+| :--- | :---: | :---: | :---: | :---: |
+| **Low Risk** | `< 0.30` | 4,354 | 61.82% | 5.86% |
+| **Medium Risk** | `0.30 <= P < 0.50` | 1,327 | 18.84% | 35.19% |
+| **High Risk** | `0.50 <= P < 0.70` | 934 | 13.26% | 63.81% |
+| **Very High Risk** | `>= 0.70` | 428 | 6.08% | 85.05% |
+
+### Top Global Feature Importances
+1. `tenure` (0.2021)
+2. `TotalCharges` (0.1435)
+3. `MonthlyCharges` (0.0915)
+4. `InternetService_Fiber optic` (0.0913)
+5. `PaymentMethod_Electronic check` (0.0742)
+
+---
+
+## Decision-Support Web Application
+
+The system features a dark-first analytics dashboard built with React 19, Vite, Tailwind CSS v4, and Node.js / Express:
+
+* **Overview View:** Executive KPI summary, portfolio risk progress bar, top priority review accounts.
+* **Customer Explorer:** Real-time customer ID search, multi-field dropdown filters (Risk, Contract, Internet, Payment), field sorting, pagination.
+* **Customer Profile Drawer:** Slide-over account inspection rendering risk gauges, evidence-based review reasons, and organized attribute tabs.
+* **Risk Analysis View:** Population probability distribution histogram and comparative segment statistics (High Risk vs Portfolio).
+* **Model Insights View:** Locked test evaluation grid (`ROC-AUC = 0.8429`), confusion matrix visualizer, and global feature importance charts.
+
+---
+
+## Project Structure
 
 ```text
 customer-churn-prediction/
 │
 ├── data/
-│   ├── raw/
-│   │   └── Telco-Customer-Churn.csv
-│   └── processed/
-│
-├── notebooks/
+│   └── raw/
+│       └── Telco-Customer-Churn.csv
 │
 ├── src/
-│   ├── data/
-│   │   ├── __init__.py
-│   │   ├── loader.py
-│   │   ├── audit.py
-│   │   └── eda.py
-│   ├── features/
-│   │   ├── __init__.py
-│   │   ├── engineering.py
-│   │   ├── preprocessing.py
-│   │   └── ablation.py
-│   ├── models/
-│   │   ├── __init__.py
-│   │   ├── baseline.py
-│   │   └── tree_models.py
+│   ├── components/
+│   │   ├── CustomerDetailDrawer.tsx
+│   │   ├── CustomersView.tsx
+│   │   ├── Header.tsx
+│   │   ├── ModelInsightsView.tsx
+│   │   ├── OverviewView.tsx
+│   │   ├── RiskAnalysisView.tsx
+│   │   └── Sidebar.tsx
 │   ├── evaluation/
-│   │   ├── __init__.py
-│   │   ├── baseline.py
-│   │   └── tree_models.py
-│   └── utils/
-│       └── __init__.py
+│   ├── features/
+│   ├── models/
+│   ├── preprocessing/
+│   ├── server/
+│   │   └── dataService.ts
+│   ├── App.tsx
+│   └── main.tsx
 │
 ├── models/
 ├── reports/
 │   ├── figures/
 │   └── results/
-│       ├── eda_audit_report.json
-│       ├── feature_ablation_results.json
-│       ├── logistic_regression_baseline.json
-│       ├── logistic_regression_coefficients.csv
-│       ├── tree_model_benchmark.json
-│       ├── decision_tree_feature_importance.csv
-│       └── random_forest_feature_importance.csv
+│       ├── phase7_final_test_results.json
+│       ├── phase8_customer_risk_scores.csv
+│       ├── phase8_explainability_summary.json
+│       ├── phase8_high_risk_customers.csv
+│       └── phase10_qa_report.json
 │
 ├── tests/
+│   ├── test_baseline.py
 │   ├── test_data_audit.py
 │   ├── test_eda.py
-│   ├── test_preprocessing.py
+│   ├── test_explainability.py
 │   ├── test_features.py
-│   ├── test_baseline.py
+│   ├── test_final_evaluation.py
+│   ├── test_optimization.py
+│   ├── test_preprocessing.py
+│   ├── test_qa_phase10.py
 │   └── test_tree_models.py
 │
 ├── docs/
-│   ├── PRD.md
-│   ├── PROJECT_SPECIFICATIONS.md
-│   ├── ML_REQUIREMENTS.md
-│   ├── DATASET_AND_DATA_STRATEGY.md
-│   ├── EXPERIMENT_PLAN.md
 │   ├── ARCHITECTURE.md
-│   ├── RULES.md
-│   ├── CODING_STANDARDS.md
-│   ├── GIT_GITHUB_STRATEGY.md
-│   ├── QUALITY_ASSURANCE.md
-│   └── TASK_TRACKER.md
+│   ├── FINAL_RESULTS.md
+│   └── METHODOLOGY.md
 │
-├── requirements.txt
+├── package.json
 ├── README.md
-└── .gitignore
+├── requirements.txt
+├── server.ts
+└── tsconfig.json
 ```
 
 ---
 
-# Technology Stack
+## Technology Stack
 
-* **Language:** Python 3.11
-* **Data Processing & ML:** `numpy`, `pandas`, `scikit-learn`
-* **Version Control:** Git & GitHub
-
-*(Adheres strictly to the internship technology constraints. No unapproved frameworks or external libraries).*
+* **Machine Learning & Data Processing:** Python 3.11, `scikit-learn`, `pandas`, `numpy`, `matplotlib`
+* **Web Application:** React 19, Vite, Tailwind CSS v4, TypeScript, Lucide Icons
+* **Backend API Server:** Node.js, Express (`server.ts`)
+* **Testing & Quality Assurance:** `pytest` (64 unit tests), ESLint / TypeScript compiler (`npm run lint`)
 
 ---
 
-# Installation
+## Installation & Setup
 
 ```bash
-# Clone the repository
+# Clone repository
 git clone <REPOSITORY_URL>
 cd customer-churn-prediction
 
-# Create and activate virtual environment
+# Set up Python environment
 python3 -m venv .venv
 source .venv/bin/activate
-
-# Install approved dependencies
 pip install -r requirements.txt
+
+# Install web app dependencies
+npm install
 ```
 
 ---
 
-# Usage
+## Running the Application
 
-### Run Data Quality Audit
 ```bash
-python3 -m src.data.audit
-```
+# Start Express API server & Vite development server
+npm run dev
 
-### Run EDA & Leakage Audit Pipeline
-```bash
-python3 -m src.data.eda
-```
-
-### Run Phase 3 Feature Ablation Study
-```bash
-python3 -m src.features.ablation
-```
-
-### Run Phase 4 Baseline Benchmarking
-```bash
-python3 -m src.evaluation.baseline
-```
-
-### Run Phase 5 Tree-Based Model Benchmarking
-```bash
-python3 -m src.evaluation.tree_models
-```
-
-### Run Complete Test Suite
-```bash
-python3 -m unittest discover -s tests -v
-# or: pytest tests
-# Authoritative Result: 41 collected, 41 passed, 0 failed
+# Open browser to http://localhost:3000
 ```
 
 ---
 
-# Project Status
+## Testing & Quality Assurance
 
-**Current Status:** Phase 10 Complete (Tree-Based Model Benchmarking)
+```bash
+# Run Python unit test suite
+pytest
+# Output: 64 collected, 64 passed in 5.94s
+
+# Run TypeScript & UI linter
+npm run lint
+# Output: 0 errors
+
+# Build web application applet
+npm run build
+# Output: Build succeeded - compiled cleanly
+```
+
+---
+
+## Project Roadmap & Status
+
+**Overall Status: PROJECT 1 — COMPLETE**
 
 * [x] Phase 0 — Project Setup & Environment Configuration
 * [x] Phase 1 — Dataset Acquisition & Quality Audit
@@ -375,16 +342,27 @@ python3 -m unittest discover -s tests -v
 * [x] Phase 8 — Error Analysis & Explainability
 * [x] Phase 9 — Application / Demo
 * [x] Phase 10 — Testing & QA Sign-Off
+* [x] Phase 11 — Technical Documentation
+* [x] Phase 12 — GitHub & Portfolio Packaging
+* [x] Phase 13 — Final Review & Sign-Off
 
 ---
 
-# Author
+## Limitations
 
-**Anurag**
-Machine Learning Internship Capstone Project
+1. **Cross-Sectional Dataset:** Customer records represent static snapshots; predicted probabilities estimate risk based on recorded attributes rather than predicting time-to-churn timelines.
+2. **Non-Causal Feature Importance:** Tree feature importances reflect statistical split contributions in the fitted Random Forest and do not establish direct causal relationships.
 
 ---
 
-# License
+## Documentation Links
 
-MIT License. Dataset provided under public domain sample by IBM Corporation.
+* [Methodology Specification](docs/METHODOLOGY.md)
+* [Final Results & Performance Summary](docs/FINAL_RESULTS.md)
+* [System Architecture Specification](docs/ARCHITECTURE.md)
+
+---
+
+## License
+
+MIT License. Telco Customer Churn dataset provided under public domain sample by IBM Corporation.
