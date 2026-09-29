@@ -25,6 +25,7 @@
 * [Threshold Analysis](#threshold-analysis)
 * [Portfolio Risk Ranking & Explainability](#portfolio-risk-ranking--explainability)
 * [Decision-Support Web Application](#decision-support-web-application)
+* [Application Screenshots](#application-screenshots)
 * [Project Structure](#project-structure)
 * [Technology Stack](#technology-stack)
 * [Installation & Setup](#installation--setup)
@@ -44,7 +45,7 @@ Customer churn poses a major challenge for subscription-based businesses, where 
 This project delivers an end-to-end machine-learning decision-support system that analyzes historical customer account attributes and estimates churn probabilities.
 
 Rather than producing a black-box binary label, the system provides:
-* Calibrated churn probabilities `P(Churn = Yes)`
+* Estimated churn probabilities `P(Churn = Yes)`
 * Operational risk bands (Low, Medium, High, Very High Risk)
 * Ranked customer priority lists
 * Evidence-based, interpretable review reasons for customer success teams
@@ -66,7 +67,7 @@ Leakage-Safe Preprocessing (Median Imputation + One-Hot Encoding + Scaling)
 Optimized Random Forest Classifier (n_estimators=300, max_depth=8)
           │
           ▼
-Calibrated Churn Probability & Operational Risk Banding
+Estimated Churn Probability & Operational Risk Banding
           │
           ▼
 Ranked Customer Directory & Evidence-Based Review Reasons
@@ -81,7 +82,7 @@ React 19 Decision-Support Dashboard
 
 1. **Leakage-Isolated Preprocessing Pipeline:** Strict separation of training (5,634 rows) and holdout test (1,409 rows) sets; stateful transformers fitted exclusively on training data.
 2. **Validated Model Architecture:** Hyperparameter-tuned `RandomForestClassifier` selected via 5-fold stratified cross-validation over linear baselines and unconstrained trees.
-3. **Calibrated Risk Scoring:** Brier Score of `0.1362` and ROC-AUC of `0.8429` on the locked holdout test set.
+3. **Probability Scoring & Validation:** Brier Score of `0.1362` and ROC-AUC of `0.8429` on the locked holdout test set.
 4. **Portfolio Risk Ranking:** Evaluates all 7,043 accounts into 4 operational risk bands, highlighting 1,362 High/Very High Risk accounts (19.34%).
 5. **Interactive Analytics Console:** Full-stack React 19 + Express application supporting real-time ID search, multi-field filtering, field sorting, pagination, and slide-over profile inspection drawers.
 
@@ -208,6 +209,28 @@ The system features a dark-first analytics dashboard built with React 19, Vite, 
 
 ---
 
+## Application Screenshots
+
+The completed application provides an interactive decision-support interface for portfolio-level churn risk inspection, customer-level risk ranking, distribution analysis, and model evaluation.
+
+### Overview Dashboard
+
+![Customer Risk Overview](screenshots/01-overview-dashboard.png)
+
+### Customer Risk Ranking
+
+![Customer Explorer and Risk Ranking](screenshots/02-customer-risk-ranking.png)
+
+### Risk Distribution & Exposure Analysis
+
+![Risk Distribution and Exposure Analysis](screenshots/03-risk-distribution-analysis.png)
+
+### Model Architecture & Insights
+
+![Model Architecture and Model Insights](screenshots/04-model-insights.png)
+
+---
+
 ## Project Structure
 
 ```text
@@ -216,6 +239,12 @@ customer-churn-prediction/
 ├── data/
 │   └── raw/
 │       └── Telco-Customer-Churn.csv
+│
+├── screenshots/
+│   ├── 01-overview-dashboard.png
+│   ├── 02-customer-risk-ranking.png
+│   ├── 03-risk-distribution-analysis.png
+│   └── 04-model-insights.png
 │
 ├── src/
 │   ├── components/
