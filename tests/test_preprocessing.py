@@ -33,7 +33,11 @@ class TestPreprocessingArchitecture(unittest.TestCase):
         """Verify the raw CSV has not been modified or corrupted (MD5 hash check)."""
         raw_path = PROJECT_ROOT / "data" / "raw" / "Telco-Customer-Churn.csv"
         with open(raw_path, "rb") as f:
-            file_hash = hashlib.md5(f.read()).hexdigest()
+    raw_bytes = f.read()
+
+# Normalize line endings so the integrity check is platform-independent.
+normalized_bytes = raw_bytes.replace(b"\r\n", b"\n").replace(b"\r", b"\n")
+file_hash = hashlib.md5(normalized_bytes).hexdigest()
         self.assertEqual(
             file_hash,
             "3b0bfab28a8101b4e4fdd08025a5c235",
