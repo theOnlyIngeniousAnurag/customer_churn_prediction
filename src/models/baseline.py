@@ -41,9 +41,11 @@ def get_baseline_model(
         Configured baseline model.
     """
     return LogisticRegression(
-        max_iter=max_iter,
-        random_state=random_state
-    )
+    penalty="l2",
+    C=1.0,
+    max_iter=max_iter,
+    random_state=random_state
+)
 
 
 def build_baseline_pipeline(
