@@ -311,29 +311,38 @@ customer-churn-prediction/
 
 ## Installation & Setup
 
+### Prerequisites
+Make sure the following are installed:
+
+- Python 3.11
+- Node.js 20+ and npm
+- Git
+
+> **Recommended:** Use Python 3.11 for the most reproducible environment.
+> The project uses Python for the machine-learning pipeline and Node.js/npm
+> for the decision-support web application.
+
 ```bash
 # Clone repository
 git clone https://github.com/theOnlyIngeniousAnurag/customer_churn_prediction
-cd customer-churn-prediction
+cd customer_churn_prediction
 
 # Set up Python environment
-python3 -m venv .venv
+
+##Windows (PowerShell)
+py -3.11 -m venv .venv
+.\.venv\Scripts\Activate.ps1
+python -m pip install --upgrade pip
+pip install -r requirements.txt
+
+##Linux/macOS
+python3.11 -m venv .venv
 source .venv/bin/activate
+python -m pip install --upgrade pip
 pip install -r requirements.txt
 
 # Install web app dependencies
 npm install
-```
-
----
-
-## Running the Application
-
-```bash
-# Start Express API server & Vite development server
-npm run dev
-
-# Open browser to http://localhost:3000
 ```
 
 ---
@@ -352,6 +361,17 @@ npm run lint
 # Build web application applet
 npm run build
 # Output: Build succeeded - compiled cleanly
+```
+
+---
+
+## Running the Application
+
+```bash
+# Start Express API server & Vite development server
+npm run dev
+
+# Open browser to http://localhost:3000
 ```
 
 ---
