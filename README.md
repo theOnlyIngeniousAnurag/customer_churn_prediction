@@ -330,13 +330,13 @@ cd customer_churn_prediction
 # Set up Python environment
 
 ##Windows (PowerShell)
-py -3.11 -m venv .venv
+py -3 -m venv .venv
 .\.venv\Scripts\Activate.ps1
 python -m pip install --upgrade pip
 pip install -r requirements.txt
 
 ##Linux/macOS
-python3.11 -m venv .venv
+python3 -m venv .venv
 source .venv/bin/activate
 python -m pip install --upgrade pip
 pip install -r requirements.txt
